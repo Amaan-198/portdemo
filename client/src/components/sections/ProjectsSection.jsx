@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Modal, Button, Alert, Carousel } from 'react-bootstrap';
-import ProjectCard from '../ProjectCard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { getProjects } from '../../api/apiService';
 import he from 'he';
-import './ProjectsSection.css'; // Import the new CSS file
+import './ProjectsSection.css';
 
 const ProjectsSection = () => {
   const [showModal, setShowModal] = useState(false);
@@ -39,33 +38,37 @@ const ProjectsSection = () => {
     setSelectedProject(null);
   };
 
-  const groupedProjects = projects.reduce((acc, project) => {
-    (acc[project.category] = acc[project.category] || []).push(project);
-    return acc;
-  }, {});
-
   return (
-    <Container id="projects" className="my-5 py-5">
-      <h2 className="display-5 fw-bold mb-5">My Projects</h2>
-      {loading ? <p>Loading projects...</p> : error ? <Alert variant="danger">{error}</Alert> : (
-        Object.entries(groupedProjects).map(([category, projectsInCategory]) => (
-          <div key={category} className="mb-5">
-            <h3 className="mb-4">{he.decode(category)}</h3>
-            <Row xs={1} md={2} lg={3} className="g-4">
-              {projectsInCategory.map((project) => (
-                <Col key={project._id}>
-                  <ProjectCard {...project} onReadMore={() => handleShowModal(project)} />
-                </Col>
-              ))}
-            </Row>
+    <div id="projects" className="projects-section">
+      <Container>
+        <h2 className="display-5 fw-bold text-center text-white mb-5">My Projects</h2>
+        {loading ? <p className="text-center text-white">Loading projects...</p> : error ? <Alert variant="danger">{error}</Alert> : (
+          <div className="projects-grid">
+            {projects.map((project) => (
+              <div key={project._id} className="project-card" onClick={() => handleShowModal(project)}>
+                <img src={project.imageUrls[0]} alt={he.decode(project.title)} className="project-card-img" />
+                <div className="project-card-body">
+                  <h4 className="project-card-title">{he.decode(project.title)}</h4>
+                  <p className="project-card-subtitle">{he.decode(project.subtitle)}</p>
+                  <div className="project-card-tags">
+                    {project.technologies.map((tech, i) => (
+                      <span key={i} className="project-card-tag">{he.decode(tech)}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
-        ))
-      )}
+        )}
+      </Container>
 
       {selectedProject && (
-        <Modal show={showModal} onHide={handleCloseModal} size="lg" centered>
+        <Modal show={showModal} onHide={handleCloseModal} dialogClassName="project-modal" centered>
           <Modal.Header closeButton>
-            <Modal.Title>{he.decode(selectedProject.title)}</Modal.Title>
+            <div>
+              <Modal.Title as="h3">{he.decode(selectedProject.title)}</Modal.Title>
+              <p className="text-white-50 mb-0">{he.decode(selectedProject.subtitle)}</p>
+            </div>
           </Modal.Header>
           <Modal.Body>
             <Carousel>
@@ -75,7 +78,7 @@ const ProjectsSection = () => {
                 </Carousel.Item>
               ))}
             </Carousel>
-            <p className="mt-3">{he.decode(selectedProject.extendedDescription)}</p>
+            <p className="mt-4">{he.decode(selectedProject.extendedDescription)}</p>
           </Modal.Body>
           <Modal.Footer>
             {selectedProject.githubUrl && (
@@ -90,9 +93,6 @@ const ProjectsSection = () => {
                 Live Demo
               </Button>
             )}
-            <Button variant="secondary" onClick={handleCloseModal}>
-              Close
-            </Button>
           </Modal.Footer>
         </Modal>
       )}

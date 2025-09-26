@@ -1,6 +1,133 @@
+/* General Section Styling */
+.projects-section {
+    background-color: #111;
+    padding: 4rem 0;
+    color: #fff;
+}
+
+/* Grid Layout */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Project Card Styling */
+.project-card {
+    background: rgba(20, 20, 20, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+}
+
+.project-card-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.project-card-body {
+    padding: 1.5rem;
+}
+
+.project-card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 0.25rem;
+}
+
+.project-card-subtitle {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 1rem;
+}
+
+/* Technology Tags */
+.project-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.project-card-tag {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.3rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* Modal Styling from previous steps */
 .carousel-item img {
-  max-height: 25rem;
-  max-width: 25rem;
-  object-fit: cover; /* This prevents the image from stretching */
-  margin: auto; /* Helps center the image within the item */
+    max-height: 25rem;
+    max-width: 100%; /* Changed for better modal fit */
+    object-fit: cover;
+    margin: auto;
+}
+
+/* --- Immersive Modal Styling --- */
+.project-modal .modal-dialog {
+    max-width: 90vw; /* Almost full-screen */
+}
+
+.project-modal .modal-content {
+    background: rgba(20, 20, 20, 0.8); /* Darker, more opaque glassmorphism */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    color: #fff;
+}
+
+.project-modal .modal-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.project-modal .modal-header .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%); /* Makes close button white */
+}
+
+.project-modal .modal-title {
+    font-weight: 600;
+}
+
+.project-modal .modal-body p {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+.project-modal .modal-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: flex-end; /* Align buttons to the right */
+    gap: 1rem;
+}
+
+/* Overriding default button styles for consistency */
+.project-modal .btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.project-modal .btn-outline-dark {
+    color: #fff;
+    border-color: #fff;
+}
+
+.project-modal .btn-outline-dark:hover {
+    background-color: #fff;
+    color: #111;
 }
