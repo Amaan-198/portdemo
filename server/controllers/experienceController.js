@@ -41,10 +41,10 @@ const updateExperience = asyncHandler(async (req, res) => {
   const { role, company, dates, description } = req.body;
   const experience = await Experience.findById(req.params.id);
   if (experience) {
-    experience.role = role || experience.role;
-    experience.company = company || experience.company;
-    experience.dates = dates || experience.dates;
-    experience.description = description || experience.description;
+    experience.role = role;
+    experience.company = company;
+    experience.dates = dates;
+    experience.description = description;
     const updatedExperience = await experience.save();
     res.json(updatedExperience);
   } else {
