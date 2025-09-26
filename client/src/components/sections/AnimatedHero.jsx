@@ -19,9 +19,10 @@ const AnimatedContent = ({ profile }) => {
     const backgroundY = useTransform(scrollYProgress, [0.3, 1], ['0%', '-50%']);
     const introOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
     const introScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.9]);
-    const aboutOpacity = useTransform(scrollYProgress, [0.15, 0.3, 0.8, 0.95], [0, 1, 1, 0]);
-    const aboutScale = useTransform(scrollYProgress, [0.15, 0.3, 0.8, 0.95], [0.95, 1, 1, 0.95]);
-    const aboutPointerEvents = useTransform(scrollYProgress, [0.14, 0.15, 0.95, 0.96], ['none', 'auto', 'auto', 'none']);
+    const introPointerEvents = useTransform(scrollYProgress, [0.19, 0.2], ['auto', 'none']);
+
+    const aboutOpacity = useTransform(scrollYProgress, [0.2, 0.3, 0.8, 0.95], [0, 1, 1, 0]);
+    const aboutPointerEvents = useTransform(scrollYProgress, [0.19, 0.2, 0.95, 0.96], ['none', 'auto', 'auto', 'none']);
 
     return (
         <div ref={targetRef} id="home" className="animated-hero-container">
@@ -34,7 +35,7 @@ const AnimatedContent = ({ profile }) => {
                 </motion.div>
                 
                 <div className="content-container">
-                    <motion.div className="text-section" style={{ opacity: introOpacity, scale: introScale }}>
+                    <motion.div className="text-section" style={{ opacity: introOpacity, scale: introScale, pointerEvents: introPointerEvents }}>
                         <Container>
                             <h1 className="display-1 fw-bold text-shadow">
                                 {profile?.name ? he.decode(profile.name) : 'Your Name'}
@@ -67,14 +68,47 @@ const AnimatedContent = ({ profile }) => {
                         </Container>
                     </motion.div>
                 
-                    <motion.div id="about" className="text-section" style={{ opacity: aboutOpacity, scale: aboutScale, pointerEvents: aboutPointerEvents }}>
-                        <Container className="about-content">
-                            <h2 className="display-4 fw-bold">About Me</h2>
-                            <hr className="my-4" style={{ width: '60px', height: '3px', margin: 'auto', opacity: 1 }} />
-                            <p className="lead">
-                                {profile?.about ? he.decode(profile.about) : ''}
-                            </p>
-                        </Container>
+                    <motion.div id="about" className="text-section" style={{ opacity: aboutOpacity, pointerEvents: aboutPointerEvents }}>
+                        <motion.div
+                            className="bento-grid-container"
+                            variants={{
+                                hidden: { opacity: 0 },
+                                visible: {
+                                    opacity: 1,
+                                    transition: { staggerChildren: 0.2, delayChildren: 0.1 },
+                                },
+                            }}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, amount: 0.2 }}
+                        >
+                            <motion.div className="bento-card card-intro" variants={{ hidden: { y: 20, opacity: 0 }, visible: { y: 0, opacity: 1 } }}>
+                                <img src={profile?.profilePhoto || "https://via.placeholder.com/150"} alt="Headshot" className="headshot" />
+                                <h3>Hello, I’m {profile?.name ? he.decode(profile.name).split(' ')[0] : 'Amaan'}</h3>
+                            </motion.div>
+                            <motion.div className="bento-card card-narrative" variants={{ hidden: { y: 20, opacity: 0 }, visible: { y: 0, opacity: 1 } }}>
+                                <h4>My Journey</h4>
+                                <p>
+                                    {profile?.aboutNarrative || "A passionate developer with a knack for creating dynamic and intuitive web applications. My journey in tech is driven by a love for problem-solving and a desire to build things that make a difference."}
+                                </p>
+                            </motion.div>
+                            <motion.div className="bento-card card-skills" variants={{ hidden: { y: 20, opacity: 0 }, visible: { y: 0, opacity: 1 } }}>
+                                <h4>Core Skills</h4>
+                                <ul>
+                                    {profile?.aboutSkills && profile.aboutSkills.length > 0 ? (
+                                        profile.aboutSkills.map((skill, index) => <li key={index}>{skill}</li>)
+                                    ) : (
+                                        <>
+                                            <li>React</li>
+                                            <li>Node.js</li>
+                                            <li>Express</li>
+                                            <li>MongoDB</li>
+                                            <li>JavaScript</li>
+                                        </>
+                                    )}
+                                </ul>
+                            </motion.div>
+                        </motion.div>
                     </motion.div>
                 </div>
             </div>

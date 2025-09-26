@@ -11,7 +11,8 @@ const getProfile = asyncHandler(async (req, res) => {
     res.json({
       name: "Amaan Ahmed Shaikh",
       headline: "Enter your headline here",
-      about: "Enter your about section here",
+      aboutNarrative: "Enter your narrative here.",
+      aboutSkills: ["React", "Node.js", "MongoDB"],
       profilePhoto: "",
       resumeUrl: "",
     });
@@ -24,14 +25,15 @@ const updateProfile = asyncHandler(async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const { name, headline, about, profilePhoto, resumeUrl } = req.body;
+  const { name, headline, aboutNarrative, aboutSkills, profilePhoto, resumeUrl } = req.body;
   let profile = await Profile.findOne({});
 
   if (profile) {
     // This new logic directly applies the values from the form
     profile.name = name;
     profile.headline = headline;
-    profile.about = about;
+    profile.aboutNarrative = aboutNarrative;
+    profile.aboutSkills = aboutSkills;
     profile.profilePhoto = profilePhoto;
     profile.resumeUrl = resumeUrl;
 
@@ -43,7 +45,8 @@ const updateProfile = asyncHandler(async (req, res) => {
       user: req.user._id,
       name,
       headline,
-      about,
+      aboutNarrative,
+      aboutSkills,
       profilePhoto,
       resumeUrl,
     });

@@ -16,11 +16,10 @@ const profileSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    about: {
+    aboutNarrative: {
       type: String,
-      required: true,
     },
-    aboutParagraphs: [
+    aboutSkills: [
       {
         type: String,
       },
