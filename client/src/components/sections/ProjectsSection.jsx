@@ -36,9 +36,9 @@ const ProjectsSection = () => {
         <h2 className="display-5 fw-bold mb-5 text-center">My Projects</h2>
         {loading ? (
           <p className="text-center">Loading projects...</p>
-      ) : error ? (
-        <Alert variant="danger">{error}</Alert>
-      ) : (
+        ) : error ? (
+          <Alert variant="danger">{error}</Alert>
+        ) : (
         Object.entries(groupedProjects).map(([category, projectsInCategory]) => (
           <div key={category} className="mb-5">
             <h3 className="mb-4">{he.decode(category)}</h3>
