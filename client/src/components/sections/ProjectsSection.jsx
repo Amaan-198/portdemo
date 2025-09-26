@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Modal, Button, Alert, Carousel } from 'react-bootstrap';
+import { Container, Row, Col, Alert, Carousel } from 'react-bootstrap';
 import ProjectCard from '../ProjectCard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
@@ -62,39 +62,44 @@ const ProjectsSection = () => {
         ))
       )}
 
-      {selectedProject && (
-        <Modal show={showModal} onHide={handleCloseModal} size="lg" centered>
-          <Modal.Header closeButton>
-            <Modal.Title>{he.decode(selectedProject.title)}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Carousel>
-              {selectedProject.imageUrls.map((url) => (
-                <Carousel.Item key={url}>
-                  <img src={url} alt={`${he.decode(selectedProject.title)} - view`} className="d-block w-100" />
-                </Carousel.Item>
-              ))}
-            </Carousel>
-            <p className="mt-3">{he.decode(selectedProject.extendedDescription)}</p>
-          </Modal.Body>
-          <Modal.Footer>
-            {selectedProject.githubUrl && (
-              <Button variant="outline-dark" href={selectedProject.githubUrl} target="_blank" rel="noopener noreferrer">
-                <FontAwesomeIcon icon={faGithub} className="me-2" />
-                View Code
-              </Button>
-            )}
-            {selectedProject.liveUrl && (
-              <Button variant="primary" href={selectedProject.liveUrl} target="_blank" rel="noopener noreferrer">
-                <FontAwesomeIcon icon={faExternalLinkAlt} className="me-2" />
-                Live Demo
-              </Button>
-            )}
-            <Button variant="secondary" onClick={handleCloseModal}>
-              Close
-            </Button>
-          </Modal.Footer>
-        </Modal>
+      {showModal && selectedProject && (
+        <div className="project-modal-overlay" onClick={handleCloseModal}>
+          <div className="project-modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="close-modal-btn" onClick={handleCloseModal}>&times;</button>
+            <div className="modal-top-section">
+              <h2 className="modal-title">{he.decode(selectedProject.title)}</h2>
+              <p className="modal-subtitle">{he.decode(selectedProject.category)}</p>
+            </div>
+            <div className="modal-gallery-container">
+              <Carousel interval={null}>
+                {selectedProject.imageUrls.map((url, index) => (
+                  <Carousel.Item key={index}>
+                    <img
+                      className="d-block w-100 modal-image"
+                      src={url}
+                      alt={`Slide ${index + 1}`}
+                    />
+                  </Carousel.Item>
+                ))}
+              </Carousel>
+            </div>
+            <p className="modal-description">{he.decode(selectedProject.extendedDescription)}</p>
+            <div className="modal-action-buttons">
+              {selectedProject.liveUrl && (
+                <a href={selectedProject.liveUrl} target="_blank" rel="noopener noreferrer" className="modal-btn live-demo-btn">
+                  <FontAwesomeIcon icon={faExternalLinkAlt} className="me-2" />
+                  Live Demo
+                </a>
+              )}
+              {selectedProject.githubUrl && (
+                <a href={selectedProject.githubUrl} target="_blank" rel="noopener noreferrer" className="modal-btn github-repo-btn">
+                  <FontAwesomeIcon icon={faGithub} className="me-2" />
+                  GitHub Repo
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
       )}
     </Container>
   );

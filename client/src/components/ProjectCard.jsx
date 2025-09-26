@@ -1,25 +1,25 @@
 import React from 'react';
-import { Card, Badge } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import he from 'he';
 import './ProjectCard.css';
 
-const ProjectCard = ({ title, description, imageUrls, badge, onReadMore }) => {
+const ProjectCard = ({ title, category, imageUrls, onReadMore }) => {
   return (
-    <Card className="h-100 shadow-sm project-card">
-      <Card.Img variant="top" src={imageUrls[0]} />
-      <Card.Body className="d-flex flex-column">
-        <Card.Title className="fw-bold">{he.decode(title)}</Card.Title>
-        {badge && <Badge bg="primary" className="mb-2 align-self-start">{he.decode(badge)}</Badge>}
-        <Card.Text className="flex-grow-1">{he.decode(description)}</Card.Text>
-      </Card.Body>
-      <Card.Footer className="border-0 bg-white">
-        <button onClick={onReadMore} className="btn-link-style read-more-link">
-          Read More <FontAwesomeIcon icon={faArrowUpRightFromSquare} size="sm" />
+    <div className="project-card-glass" onClick={onReadMore}>
+      <div className="project-card-content">
+        <div className="project-title-container">
+          <h4 className="project-title">{he.decode(title)}</h4>
+          <p className="project-subtitle">{he.decode(category)}</p>
+        </div>
+        <div className="project-media-container">
+          <img src={imageUrls[0]} alt={`${he.decode(title)} animation`} className="project-media" />
+        </div>
+        <button className="read-more-btn">
+          View Project <FontAwesomeIcon icon={faExternalLinkAlt} size="sm" />
         </button>
-      </Card.Footer>
-    </Card>
+      </div>
+    </div>
   );
 };
 
