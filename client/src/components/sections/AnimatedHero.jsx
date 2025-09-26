@@ -21,6 +21,7 @@ const AnimatedContent = ({ profile }) => {
     const introScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.9]);
 
     const aboutOpacity = useTransform(scrollYProgress, [0.2, 0.3, 0.8, 0.95], [0, 1, 1, 0]);
+    const aboutPointerEvents = useTransform(scrollYProgress, [0.2, 0.3], ['none', 'auto']);
 
     return (
         <div ref={targetRef} id="home" className="animated-hero-container">
@@ -48,25 +49,27 @@ const AnimatedContent = ({ profile }) => {
                                 <a href="mailto:shaikhamaanahmed@gmail.com" className="me-4">
                                     <FontAwesomeIcon icon={faEnvelope} size="3x" />
                                 </a>
-                                <a href="#" target="_blank" rel="noopener noreferrer">
+                                <a href="https://github.com/amaanahmed8097" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon icon={faGithub} size="3x" />
                                 </a>
                             </div>
                             <div className="mt-4">
-                                <Button
-                                    variant="outline-light"
-                                    size="lg"
-                                    href={profile?.resumeUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    Download Resume
-                                </Button>
+                                {profile?.resumeUrl && (
+                                    <Button
+                                        variant="outline-light"
+                                        size="lg"
+                                        href={profile.resumeUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        Download Resume
+                                    </Button>
+                                )}
                             </div>
                         </Container>
                     </motion.div>
                 
-                    <motion.div id="about" className="text-section" style={{ opacity: aboutOpacity }}>
+                    <motion.div id="about" className="text-section" style={{ opacity: aboutOpacity, pointerEvents: aboutPointerEvents }}>
                         <motion.div
                             className="bento-grid-container"
                             variants={{
