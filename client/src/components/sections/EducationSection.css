@@ -7,6 +7,8 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 3rem;
   color: white;
+  max-width: 900px; /* Constrain the width of the card */
+  margin: 0 auto; /* Center the card horizontally */
 }
 
 /* Individual Education Entry */
