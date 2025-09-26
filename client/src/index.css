@@ -6,11 +6,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* --- NEW DYNAMIC BACKGROUND --- */
+  /* --- DYNAMIC BACKGROUND --- */
   background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.85); /* Default text color for the dark theme */
 }
 
 @keyframes gradient {
@@ -20,35 +20,18 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #fff; /* Ensure headings are bright white */
+  color: #fff; /* White headings to stand out on the dark background */
 }
 
-/* --- NEW REUSABLE GLASS CONTAINER STYLE --- */
+/* --- REUSABLE GLASS CONTAINER STYLE --- */
 .section-container-glass {
-  background: rgba(20, 20, 20, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(25, 25, 30, 0.6); /* Slightly darker glass effect */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
   padding: 3rem;
+  margin-top: -80px; /* The overlapping effect */
   position: relative;
   z-index: 5;
-}
-
-/* Custom scrollbar for a modern look */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #222;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #555;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #777;
 }
