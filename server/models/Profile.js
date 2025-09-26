@@ -31,6 +31,15 @@ const profileSchema = mongoose.Schema(
     resumeUrl: {
       type: String,
     },
+    linkedinUrl: {
+      type: String,
+    },
+    githubUrl: {
+      type: String,
+    },
+    email: {
+      type: String,
+    },
   },
   {
     timestamps: true,

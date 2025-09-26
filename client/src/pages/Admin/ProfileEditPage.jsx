@@ -14,6 +14,9 @@ const ProfileEditPage = () => {
     aboutSkills: [],
     profilePhoto: '',
     resumeUrl: '',
+    linkedinUrl: '',
+    githubUrl: '',
+    email: '',
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -29,6 +32,9 @@ const ProfileEditPage = () => {
           headline: data.headline ? he.decode(data.headline) : '',
           aboutNarrative: data.aboutNarrative ? he.decode(data.aboutNarrative) : '',
           aboutSkills: data.aboutSkills ? data.aboutSkills.map(s => he.decode(s)) : [],
+          linkedinUrl: data.linkedinUrl ? he.decode(data.linkedinUrl) : '',
+          githubUrl: data.githubUrl ? he.decode(data.githubUrl) : '',
+          email: data.email ? he.decode(data.email) : '',
         };
         setFormData(decodedData);
         setLoading(false);
@@ -88,6 +94,18 @@ const ProfileEditPage = () => {
               <Form.Group className="mb-3" controlId="resumeUrl">
                 <Form.Label>Resume URL</Form.Label>
                 <Form.Control type="text" name="resumeUrl" value={formData.resumeUrl} onChange={handleChange} />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="linkedinUrl">
+                <Form.Label>LinkedIn URL</Form.Label>
+                <Form.Control type="text" name="linkedinUrl" value={formData.linkedinUrl} onChange={handleChange} />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="githubUrl">
+                <Form.Label>GitHub URL</Form.Label>
+                <Form.Control type="text" name="githubUrl" value={formData.githubUrl} onChange={handleChange} />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="email">
+                <Form.Label>Email Address</Form.Label>
+                <Form.Control type="email" name="email" value={formData.email} onChange={handleChange} />
               </Form.Group>
               <Button type="submit" variant="primary">Update Profile</Button>
             </Form>

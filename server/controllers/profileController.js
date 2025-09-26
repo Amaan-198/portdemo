@@ -21,6 +21,9 @@ const getProfile = asyncHandler(async (req, res) => {
       aboutSkills: ["React", "Node.js", "MongoDB"],
       profilePhoto: "",
       resumeUrl: "",
+      linkedinUrl: "",
+      githubUrl: "",
+      email: "",
     });
   }
 });
@@ -31,7 +34,7 @@ const updateProfile = asyncHandler(async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const { name, headline, aboutNarrative, aboutSkills, profilePhoto, resumeUrl } = req.body;
+  const { name, headline, aboutNarrative, aboutSkills, profilePhoto, resumeUrl, linkedinUrl, githubUrl, email } = req.body;
   let profile = await Profile.findOne({});
 
   if (profile) {
@@ -42,6 +45,9 @@ const updateProfile = asyncHandler(async (req, res) => {
     profile.aboutSkills = aboutSkills;
     profile.profilePhoto = profilePhoto;
     profile.resumeUrl = resumeUrl;
+    profile.linkedinUrl = linkedinUrl;
+    profile.githubUrl = githubUrl;
+    profile.email = email;
 
     // After updating, unset the old 'about' field to clean up the database document.
     // The `about` field is no longer in the schema, so we use `set` to remove it.
@@ -61,6 +67,9 @@ const updateProfile = asyncHandler(async (req, res) => {
       aboutSkills,
       profilePhoto,
       resumeUrl,
+      linkedinUrl,
+      githubUrl,
+      email,
     });
     const createdProfile = await profile.save();
     res.status(201).json(createdProfile);
