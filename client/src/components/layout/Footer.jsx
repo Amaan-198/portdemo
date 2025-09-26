@@ -1,31 +1,63 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { motion } from 'framer-motion';
+import './Footer.css';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
+  const footerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: 'easeOut',
+      },
+    },
+  };
+
   return (
-    <footer className="bg-light py-4 mt-auto">
-      <Container className="text-center">
-        <div className="mb-3">
-          <a href="https://www.linkedin.com/in/amaanahmed8097" target="_blank" rel="noopener noreferrer" className="text-dark me-4">
-            <FontAwesomeIcon icon={faLinkedin} size="2x" />
+    <motion.footer
+      className="main-footer"
+      variants={footerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
+    >
+      <div className="footer-container">
+        <div className="footer-social-links">
+          <a
+            href="https://www.linkedin.com/in/amaanahmed8097"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer-social-icon"
+          >
+            <FontAwesomeIcon icon={faLinkedin} />
           </a>
-          <a href="mailto:shaikhamaanahmed@gmail.com" className="text-dark me-4">
-            <FontAwesomeIcon icon={faEnvelope} size="2x" />
+          <a
+            href="mailto:shaikhamaanahmed@gmail.com"
+            className="footer-social-icon"
+          >
+            <FontAwesomeIcon icon={faEnvelope} />
           </a>
-          <a href="#" target="_blank" rel="noopener noreferrer" className="text-dark">
-            <FontAwesomeIcon icon={faGithub} size="2x" />
+          <a
+            href="https://github.com/your-username" // Please update this with the correct GitHub profile URL
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer-social-icon"
+          >
+            <FontAwesomeIcon icon={faGithub} />
           </a>
         </div>
-        <p className="mb-0">
+        <p className="footer-copyright">
           &copy; {currentYear} Amaan Ahmed Shaikh. All Rights Reserved.
         </p>
-      </Container>
-    </footer>
+      </div>
+    </motion.footer>
   );
 };
 
