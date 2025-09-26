@@ -1,8 +1,5 @@
-/* General Section Styling */
-.experience-section {
-    /* Background and padding are now handled by the global .glass-section class */
-    color: #fff;
-}
+/* All section-level styling is now handled by the global .section-container-glass class. */
+/* This file now only contains styles specific to the content within the experience section. */
 
 .experience-list {
     display: flex;

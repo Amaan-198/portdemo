@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Alert } from 'react-bootstrap';
+import { Row, Col, Alert, Container } from 'react-bootstrap';
 import he from 'he';
 import { getSkills } from '../../api/apiService';
 import { motion } from 'framer-motion';
@@ -57,26 +57,30 @@ const SkillsSection = () => {
   );
 
   return (
-    <section id="skills" className="glass-section">
-      <h2 className="display-5 fw-bold mb-5 text-center">Technical Skills</h2>
-      {loading ? (
-        <p className="text-center">Loading skills...</p>
-      ) : error ? (
-        <Alert variant="danger">{error}</Alert>
-      ) : (
-        <motion.div
-          className="skills-container"
-          variants={mainContainerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-        >
-          <Row>
-            <Col md={6}>{renderSkillColumn(firstColumn)}</Col>
-            <Col md={6}>{renderSkillColumn(secondColumn)}</Col>
-          </Row>
-        </motion.div>
-      )}
+    <section id="skills">
+      <Container>
+        <div className="section-container-glass">
+          <h2 className="display-5 fw-bold mb-5 text-center">Technical Skills</h2>
+          {loading ? (
+            <p className="text-center">Loading skills...</p>
+          ) : error ? (
+            <Alert variant="danger">{error}</Alert>
+          ) : (
+            <motion.div
+              className="skills-container"
+              variants={mainContainerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+            >
+              <Row>
+                <Col md={6}>{renderSkillColumn(firstColumn)}</Col>
+                <Col md={6}>{renderSkillColumn(secondColumn)}</Col>
+              </Row>
+            </motion.div>
+          )}
+        </div>
+      </Container>
     </section>
   );
 };

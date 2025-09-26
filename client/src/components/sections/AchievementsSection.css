@@ -1,8 +1,5 @@
-/* Achievements Section Container */
-.achievements-container {
-  /* All container styling is now handled by the global .glass-section class */
-  color: white;
-}
+/* All section-level styling is now handled by the global .section-container-glass class. */
+/* This file now only contains styles specific to the content within the achievements section. */
 
 /* Individual Achievement Item */
 .achievement-item {
