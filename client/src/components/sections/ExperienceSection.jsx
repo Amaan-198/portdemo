@@ -23,7 +23,7 @@ const ExperienceSection = () => {
   const { data: experiences, loading, error } = useFetchData(getExperiences);
 
   return (
-    <div id="experience" className="experience-section">
+    <div id="experience" className="experience-section glass-section">
       <Container>
         <h2 className="display-5 fw-bold text-center text-white mb-5">Professional Experience</h2>
 

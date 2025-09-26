@@ -1,11 +1,6 @@
 /* Achievements Section Container */
 .achievements-container {
-  background: rgba(22, 22, 22, 0.75); /* Dark, semi-transparent background */
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 3rem;
+  /* All container styling is now handled by the global .glass-section class */
   color: white;
 }
 

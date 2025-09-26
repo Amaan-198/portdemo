@@ -34,7 +34,7 @@ const AchievementsSection = () => {
   };
 
   return (
-    <section id="achievements" className="my-5 py-5">
+    <section id="achievements" className="glass-section">
       <h2 className="display-5 fw-bold mb-5 text-center">Awards & Achievements</h2>
       {loading ? (
         <p className="text-center">Loading achievements...</p>

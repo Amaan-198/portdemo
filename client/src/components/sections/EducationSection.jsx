@@ -35,7 +35,7 @@ const EducationSection = () => {
   };
 
   return (
-    <section id="education" className="my-5 py-5">
+    <section id="education" className="glass-section">
       <h2 className="display-5 fw-bold mb-5 text-center">Education</h2>
       {loading ? (
         <p className="text-center">Loading education...</p>
