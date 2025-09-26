@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Table, Alert, Button, Row, Col } from 'react-bootstrap';
+import { Container, Table, Alert, Button, Row, Col, ButtonGroup } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { getExperiences, deleteExperience, reorderExperiences } from '../../api/apiService';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
@@ -95,18 +95,20 @@ const ExperienceListPage = () => {
                           <td>{he.decode(exp.company)}</td>
                           <td>{he.decode(exp.dates)}</td>
                           <td>
-                            <LinkContainer to={`/admin/experiences/${exp._id}/edit`}>
-                              <Button variant="light" className="btn-sm mx-1">
-                                Edit
+                            <ButtonGroup>
+                              <LinkContainer to={`/admin/experiences/${exp._id}/edit`}>
+                                <Button variant="light" className="btn-sm">
+                                  Edit
+                                </Button>
+                              </LinkContainer>
+                              <Button
+                                variant="danger"
+                                className="btn-sm"
+                                onClick={() => deleteHandler(exp._id)}
+                              >
+                                Delete
                               </Button>
-                            </LinkContainer>
-                            <Button
-                              variant="danger"
-                              className="btn-sm mx-1"
-                              onClick={() => deleteHandler(exp._id)}
-                            >
-                              Delete
-                            </Button>
+                            </ButtonGroup>
                           </td>
                         </tr>
                       )}

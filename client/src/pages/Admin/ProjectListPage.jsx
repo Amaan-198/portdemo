@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Table, Alert, Button, Row, Col } from 'react-bootstrap';
+import { Container, Table, Alert, Button, Row, Col, ButtonGroup } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { getProjects, deleteProject, reorderProjects } from '../../api/apiService';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
@@ -94,10 +94,12 @@ const ProjectListPage = () => {
                           <td>{he.decode(project.title)}</td>
                           <td>{he.decode(project.category)}</td>
                           <td>
-                            <LinkContainer to={`/admin/projects/${project._id}/edit`}>
-                              <Button variant="light" className="btn-sm mx-1">Edit</Button>
-                            </LinkContainer>
-                            <Button variant="danger" className="btn-sm mx-1" onClick={() => deleteHandler(project._id)}>Delete</Button>
+                            <ButtonGroup>
+                              <LinkContainer to={`/admin/projects/${project._id}/edit`}>
+                                <Button variant="light" className="btn-sm">Edit</Button>
+                              </LinkContainer>
+                              <Button variant="danger" className="btn-sm" onClick={() => deleteHandler(project._id)}>Delete</Button>
+                            </ButtonGroup>
                           </td>
                         </tr>
                       )}
