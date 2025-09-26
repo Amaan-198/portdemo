@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Alert, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCertificate } from '@fortawesome/free-solid-svg-icons';
+import { faCertificate, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import he from 'he';
 import { getCertificates } from '../../api/apiService';
 import { motion } from 'framer-motion';
@@ -57,41 +57,43 @@ const CertificatesSection = () => {
       ) : error ? (
         <Alert variant="danger">{error}</Alert>
       ) : (
-        <motion.div
-          as={Row}
-          xs={1}
-          md={2}
-          lg={2}
-          className="g-4"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          {certifications.map((cert) => (
-            <motion.div as={Col} key={cert._id} variants={itemVariants}>
-              <div className="certificate-card">
-                <FontAwesomeIcon
-                  icon={faCertificate}
-                  size="3x"
-                  className="certificate-icon"
-                />
-                <h4 className="certificate-title">{he.decode(cert.title)}</h4>
-                <p className="certificate-issuer">Issued by: {he.decode(cert.issuer)}</p>
-                {cert.url && (
-                  <a
-                    href={cert.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="credential-button"
-                  >
-                    View Credential
-                  </a>
-                )}
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+        <div className="certificates-section-container">
+          <motion.div
+            as={Row}
+            xs={1}
+            md={2}
+            lg={2}
+            className="g-4"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            {certifications.map((cert) => (
+              <motion.div as={Col} key={cert._id} variants={itemVariants}>
+                <div className="certificate-card">
+                  <FontAwesomeIcon
+                    icon={faCertificate}
+                    size="3x"
+                    className="certificate-icon"
+                  />
+                  <h4 className="certificate-title">{he.decode(cert.title)}</h4>
+                  <p className="certificate-issuer">Issued by: {he.decode(cert.issuer)}</p>
+                  {cert.url && (
+                    <a
+                      href={cert.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="credential-button"
+                    >
+                      View Credential <FontAwesomeIcon icon={faExternalLinkAlt} size="sm" />
+                    </a>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       )}
     </section>
   );

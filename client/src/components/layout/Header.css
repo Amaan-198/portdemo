@@ -41,6 +41,7 @@
   cursor: pointer;
   padding-bottom: 0.5rem; /* Space for the indicator */
   transition: color 0.3s;
+  text-decoration: none; /* Remove underline */
 }
 
 .header-nav-link:hover,
