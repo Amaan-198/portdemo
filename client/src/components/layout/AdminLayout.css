@@ -1,15 +1,34 @@
+.admin-layout-container {
+  background-color: #111; /* Off-black background for the whole layout */
+  color: #fff;
+  min-height: 100vh;
+}
+
 .sidebar-wrapper {
+  background-color: #000; /* Solid black for the sidebar */
   position: sticky;
   top: 0;
   height: 100vh;
+  padding-top: 1rem;
 }
 
 .content-wrapper {
   padding: 2rem;
 }
 
+/* Style for the links in the sidebar */
+.sidebar-wrapper .nav-link {
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.sidebar-wrapper .nav-link:hover {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
 /* Style the active link in the sidebar */
 .sidebar-wrapper .nav-link.active {
   font-weight: bold;
-  color: #0d6efd; /* Bootstrap's primary blue color */
+  color: #0d6efd; /* Keep primary blue for active state */
 }
