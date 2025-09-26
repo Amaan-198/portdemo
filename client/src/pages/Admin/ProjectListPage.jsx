@@ -73,7 +73,7 @@ const ProjectListPage = () => {
       </Row>
       {loading ? <p>Loading...</p> : error ? <Alert variant="danger">{error}</Alert> : (
         <DragDropContext onDragEnd={handleDragEnd}>
-          <Table striped bordered hover responsive>
+          <Table striped bordered hover responsive variant="dark">
             <thead>
               <tr>
                 <th>ORDER</th>
