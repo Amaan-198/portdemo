@@ -58,20 +58,17 @@ const CertificatesSection = () => {
         <Alert variant="danger">{error}</Alert>
       ) : (
         <div className="certificates-section-container">
-          <motion.div
-            as={Row}
-            xs={1}
-            md={2}
-            lg={2}
-            className="g-4"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-          >
-            {certifications.map((cert) => (
-              <motion.div as={Col} key={cert._id} variants={itemVariants}>
-                <div className="certificate-card h-100">
+          <Row xs={1} md={2} className="g-4">
+            {certifications.map((cert, index) => (
+              <Col key={cert._id} className="d-flex align-items-stretch">
+                <motion.div
+                  className="certificate-card h-100 w-100"
+                  variants={itemVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.5 }}
+                  custom={index}
+                >
                   <FontAwesomeIcon
                     icon={faCertificate}
                     size="3x"
@@ -89,10 +86,10 @@ const CertificatesSection = () => {
                       View Credential <FontAwesomeIcon icon={faExternalLinkAlt} size="sm" />
                     </a>
                   )}
-                </div>
-              </motion.div>
+                </motion.div>
+              </Col>
             ))}
-          </motion.div>
+          </Row>
         </div>
       )}
     </section>
