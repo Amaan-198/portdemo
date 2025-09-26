@@ -61,7 +61,7 @@ const CertificatesSection = () => {
           as={Row}
           xs={1}
           md={2}
-          lg={3}
+          lg={2}
           className="g-4"
           variants={containerVariants}
           initial="hidden"
