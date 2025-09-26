@@ -16,11 +16,12 @@ const AnimatedContent = ({ profile }) => {
         offset: ['start start', 'end start'],
     });
 
-    const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '-50%']);
-    const introOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
-    const introScale = useTransform(scrollYProgress, [0, 0.3], [1, 0.9]);
-    const aboutOpacity = useTransform(scrollYProgress, [0.25, 0.5], [0, 1]);
-    const aboutScale = useTransform(scrollYProgress, [0.25, 0.5], [0.95, 1]);
+    const backgroundY = useTransform(scrollYProgress, [0.3, 1], ['0%', '-50%']);
+    const introOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+    const introScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.9]);
+    const aboutOpacity = useTransform(scrollYProgress, [0.15, 0.3, 0.8, 0.95], [0, 1, 1, 0]);
+    const aboutScale = useTransform(scrollYProgress, [0.15, 0.3, 0.8, 0.95], [0.95, 1, 1, 0.95]);
+    const aboutPointerEvents = useTransform(scrollYProgress, [0.14, 0.15, 0.95, 0.96], ['none', 'auto', 'auto', 'none']);
 
     return (
         <div ref={targetRef} id="home" className="animated-hero-container">
@@ -66,7 +67,7 @@ const AnimatedContent = ({ profile }) => {
                         </Container>
                     </motion.div>
                 
-                    <motion.div id="about" className="text-section" style={{ opacity: aboutOpacity, scale: aboutScale }}>
+                    <motion.div id="about" className="text-section" style={{ opacity: aboutOpacity, scale: aboutScale, pointerEvents: aboutPointerEvents }}>
                         <Container className="about-content">
                             <h2 className="display-4 fw-bold">About Me</h2>
                             <hr className="my-4" style={{ width: '60px', height: '3px', margin: 'auto', opacity: 1 }} />
