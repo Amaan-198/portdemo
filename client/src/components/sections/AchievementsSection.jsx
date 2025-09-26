@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert } from 'react-bootstrap';
+import { Alert, Container } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrophy } from '@fortawesome/free-solid-svg-icons';
 import he from 'he';
@@ -34,39 +34,43 @@ const AchievementsSection = () => {
   };
 
   return (
-    <section id="achievements" className="glass-section">
-      <h2 className="display-5 fw-bold mb-5 text-center">Awards & Achievements</h2>
-      {loading ? (
-        <p className="text-center">Loading achievements...</p>
-      ) : error ? (
-        <Alert variant="danger">{error}</Alert>
-      ) : (
-        <motion.div
-          className="achievements-container"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          {achievements.map((achievement) => (
+    <section id="achievements">
+      <Container>
+        <div className="section-container-glass">
+          <h2 className="display-5 fw-bold mb-5 text-center">Awards & Achievements</h2>
+          {loading ? (
+            <p className="text-center">Loading achievements...</p>
+          ) : error ? (
+            <Alert variant="danger">{error}</Alert>
+          ) : (
             <motion.div
-              key={achievement._id}
-              className="achievement-item"
-              variants={itemVariants}
+              className="achievements-container"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
             >
-              <FontAwesomeIcon
-                icon={faTrophy}
-                size="2x"
-                className="achievement-icon"
-              />
-              <div>
-                <h4 className="achievement-title">{he.decode(achievement.title)}</h4>
-                <p className="achievement-description">{he.decode(achievement.description)}</p>
-              </div>
+              {achievements.map((achievement) => (
+                <motion.div
+                  key={achievement._id}
+                  className="achievement-item"
+                  variants={itemVariants}
+                >
+                  <FontAwesomeIcon
+                    icon={faTrophy}
+                    size="2x"
+                    className="achievement-icon"
+                  />
+                  <div>
+                    <h4 className="achievement-title">{he.decode(achievement.title)}</h4>
+                    <p className="achievement-description">{he.decode(achievement.description)}</p>
+                  </div>
+                </motion.div>
+              ))}
             </motion.div>
-          ))}
-        </motion.div>
-      )}
+          )}
+        </div>
+      </Container>
     </section>
   );
 };

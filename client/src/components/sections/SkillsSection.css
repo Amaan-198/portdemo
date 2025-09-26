@@ -1,7 +1,5 @@
-/* Main Skills Container */
-.skills-container {
-  /* All container styling is now handled by the global .glass-section class */
-}
+/* All section-level styling is now handled by the global .section-container-glass class. */
+/* This file now only contains styles specific to the content within the skills section. */
 
 /* Category Title */
 .skill-category-title {

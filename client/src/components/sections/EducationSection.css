@@ -1,7 +1,7 @@
-/* Main Education Card Container */
+/* All section-level styling is now handled by the global .section-container-glass class. */
+/* This file now only contains styles specific to the content within the education section. */
+
 .education-card {
-  /* All container styling is now handled by the global .glass-section class */
-  color: white;
   max-width: 900px; /* Constrain the width of the card */
   margin: 0 auto; /* Center the card horizontally */
 }

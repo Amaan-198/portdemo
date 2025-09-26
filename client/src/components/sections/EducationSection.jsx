@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert } from 'react-bootstrap';
+import { Alert, Container } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 import { getEducation } from '../../api/apiService';
@@ -35,37 +35,41 @@ const EducationSection = () => {
   };
 
   return (
-    <section id="education" className="glass-section">
-      <h2 className="display-5 fw-bold mb-5 text-center">Education</h2>
-      {loading ? (
-        <p className="text-center">Loading education...</p>
-      ) : error ? (
-        <Alert variant="danger">{error}</Alert>
-      ) : (
-        <motion.div
-          className="education-card"
-          variants={mainCardVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          {education.map((edu) => (
-            <motion.div className="education-entry" key={edu._id} variants={entryVariants}>
-              <div className="education-main-info">
-                <FontAwesomeIcon icon={faGraduationCap} size="3x" className="education-icon" />
-                <div>
-                  <h4 className="education-degree">{he.decode(edu.degree)}</h4>
-                  <p className="education-institution">{he.decode(edu.institution)}</p>
-                </div>
-              </div>
-              <div className="education-details">
-                <p className="education-dates">{he.decode(edu.dates)}</p>
-                <p className="education-cgpa"><strong>CGPA:</strong> {edu.cgpa}</p>
-              </div>
+    <section id="education">
+      <Container>
+        <div className="section-container-glass">
+          <h2 className="display-5 fw-bold mb-5 text-center">Education</h2>
+          {loading ? (
+            <p className="text-center">Loading education...</p>
+          ) : error ? (
+            <Alert variant="danger">{error}</Alert>
+          ) : (
+            <motion.div
+              className="education-card"
+              variants={mainCardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              {education.map((edu) => (
+                <motion.div className="education-entry" key={edu._id} variants={entryVariants}>
+                  <div className="education-main-info">
+                    <FontAwesomeIcon icon={faGraduationCap} size="3x" className="education-icon" />
+                    <div>
+                      <h4 className="education-degree">{he.decode(edu.degree)}</h4>
+                      <p className="education-institution">{he.decode(edu.institution)}</p>
+                    </div>
+                  </div>
+                  <div className="education-details">
+                    <p className="education-dates">{he.decode(edu.dates)}</p>
+                    <p className="education-cgpa"><strong>CGPA:</strong> {edu.cgpa}</p>
+                  </div>
+                </motion.div>
+              ))}
             </motion.div>
-          ))}
-        </motion.div>
-      )}
+          )}
+        </div>
+      </Container>
     </section>
   );
 };
