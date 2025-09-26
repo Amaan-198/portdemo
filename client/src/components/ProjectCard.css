@@ -1,35 +1,113 @@
-.project-card {
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-}
-
-.project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
-}
-
-.read-more-link {
-  color: #0d6efd; /* Bootstrap primary blue */
+/* Elevated Glassmorphism Project Card */
+.project-card-glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  color: white;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.project-card-glass:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.project-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+/* Layered Content */
+.project-logo-container {
+  align-self: flex-start;
+}
+
+.project-logo-placeholder {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+}
+
+.project-title-container {
+  margin-bottom: 1rem;
+}
+
+.project-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0;
+  color: #fff;
+}
+
+.project-subtitle {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+/* Interactive Preview */
+.project-media-container {
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.project-media {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Technology Tags */
+.project-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.tech-tag {
+  background-color: #e9ecef; /* A light grey background */
+  color: rgba(33, 37, 41, 0.75); /* Dark text for contrast */
+  padding: 0.4rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
   font-weight: 500;
-  display: inline-block;
-  transition: color 0.2s ease-in-out;
 }
 
-.read-more-link:hover {
-  color: #0a58ca; /* A darker blue for hover */
-  text-decoration: underline;
-}
-
-.btn-link-style {
+/* Read More Button */
+.read-more-btn {
   background: none;
-  border: none;
-  padding: 0;
-  font: inherit;
-  color: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 30px;
   cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  font-weight: 600;
+  align-self: center;
 }
 
-/* We place the footer at the bottom right */
-.card-footer {
-  text-align: right;
+.read-more-btn:hover {
+  background-color: white;
+  color: #1a1a1a;
 }
