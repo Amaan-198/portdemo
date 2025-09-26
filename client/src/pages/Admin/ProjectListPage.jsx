@@ -5,6 +5,7 @@ import { getProjects, deleteProject, reorderProjects } from '../../api/apiServic
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faArrowsAlt } from '@fortawesome/free-solid-svg-icons';
+import he from 'he';
 
 const ProjectListPage = () => {
   const [projects, setProjects] = useState([]);
@@ -90,8 +91,8 @@ const ProjectListPage = () => {
                       {(draggableProvided) => (
                         <tr ref={draggableProvided.innerRef} {...draggableProvided.draggableProps} {...draggableProvided.dragHandleProps}>
                           <td><FontAwesomeIcon icon={faArrowsAlt} className="me-2 text-muted" />{index + 1}</td>
-                          <td>{project.title}</td>
-                          <td>{project.category}</td>
+                          <td>{he.decode(project.title)}</td>
+                          <td>{he.decode(project.category)}</td>
                           <td>
                             <LinkContainer to={`/admin/projects/${project._id}/edit`}>
                               <Button variant="light" className="btn-sm mx-1">Edit</Button>

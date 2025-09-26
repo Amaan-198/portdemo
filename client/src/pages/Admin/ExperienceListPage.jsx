@@ -5,6 +5,7 @@ import { getExperiences, deleteExperience, reorderExperiences } from '../../api/
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faArrowsAlt } from '@fortawesome/free-solid-svg-icons';
+import he from 'he';
 
 const ExperienceListPage = () => {
   const [experiences, setExperiences] = useState([]);
@@ -90,9 +91,9 @@ const ExperienceListPage = () => {
                       {(draggableProvided) => (
                         <tr ref={draggableProvided.innerRef} {...draggableProvided.draggableProps} {...draggableProvided.dragHandleProps}>
                           <td><FontAwesomeIcon icon={faArrowsAlt} className="me-2 text-muted" />{index + 1}</td>
-                          <td>{exp.role}</td>
-                          <td>{exp.company}</td>
-                          <td>{exp.dates}</td>
+                          <td>{he.decode(exp.role)}</td>
+                          <td>{he.decode(exp.company)}</td>
+                          <td>{he.decode(exp.dates)}</td>
                           <td>
                             <LinkContainer to={`/admin/experiences/${exp._id}/edit`}>
                               <Button variant="light" className="btn-sm mx-1">

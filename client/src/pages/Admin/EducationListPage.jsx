@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Table, Alert, Button, Row, Col } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { getEducation, deleteEducation } from '../../api/apiService';
+import he from 'he';
 
 const EducationListPage = () => {
   const [educationList, setEducationList] = useState([]);
@@ -59,8 +60,8 @@ const EducationListPage = () => {
           <tbody>
             {educationList.map((edu) => (
               <tr key={edu._id}>
-                <td>{edu.degree}</td>
-                <td>{edu.institution}</td>
+                <td>{he.decode(edu.degree)}</td>
+                <td>{he.decode(edu.institution)}</td>
                 <td>
                   <LinkContainer to={`/admin/education/${edu._id}/edit`}>
                     <Button variant="light" className="btn-sm mx-1">Edit</Button>

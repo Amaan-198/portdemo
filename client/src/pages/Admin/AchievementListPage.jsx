@@ -5,6 +5,7 @@ import { getAchievements, deleteAchievement, reorderAchievements } from '../../a
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faArrowsAlt } from '@fortawesome/free-solid-svg-icons';
+import he from 'he';
 
 const AchievementListPage = () => {
   const [achievements, setAchievements] = useState([]);
@@ -93,8 +94,8 @@ const AchievementListPage = () => {
                       {(draggableProvided) => (
                         <tr ref={draggableProvided.innerRef} {...draggableProvided.draggableProps} {...draggableProvided.dragHandleProps}>
                           <td><FontAwesomeIcon icon={faArrowsAlt} className="me-2 text-muted" />{index + 1}</td>
-                          <td>{achievement.title}</td>
-                          <td>{achievement.description}</td>
+                          <td>{he.decode(achievement.title)}</td>
+                          <td>{he.decode(achievement.description)}</td>
                           <td>
                             <LinkContainer to={`/admin/achievements/${achievement._id}/edit`}>
                               <Button variant="light" className="btn-sm mx-1">
