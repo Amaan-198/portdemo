@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Alert } from 'react-bootstrap';
+import he from 'he';
 import { getProfile } from '../../api/apiService';
 
 const AboutSection = () => {
@@ -37,7 +38,7 @@ const AboutSection = () => {
           <h2 className="display-5 fw-bold">About Me</h2>
           <hr className="my-4" style={{ width: '50px', height: '3px' }} />
           <p className="lead text-muted">
-            {profile?.about}
+            {profile?.about ? he.decode(profile.about) : ''}
           </p>
         </Col>
       </Row>

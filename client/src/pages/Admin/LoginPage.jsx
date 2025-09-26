@@ -18,8 +18,8 @@ const LoginPage = () => {
       // On successful login, save user info to localStorage
       localStorage.setItem('userInfo', JSON.stringify(data));
       
-      // Redirect to the homepage (or admin dashboard later)
-      navigate('/'); 
+      // On successful login, redirect to the admin dashboard
+      navigate('/admin/dashboard');
     } catch (err) {
       // Set error message from the backend
       setError(err.response?.data?.message || 'An error occurred');
@@ -27,10 +27,10 @@ const LoginPage = () => {
   };
 
   useEffect(() => {
-    // If user is already logged in, redirect them
+    // If user is already logged in, redirect them to the dashboard
     const userInfo = localStorage.getItem('userInfo');
     if (userInfo) {
-      navigate('/');
+      navigate('/admin/dashboard');
     }
   }, [navigate]);
 

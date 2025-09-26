@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Alert } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrophy } from '@fortawesome/free-solid-svg-icons';
+import he from 'he';
 import { getAchievements } from '../../api/apiService';
 
 const AchievementsSection = () => {
@@ -33,18 +34,20 @@ const AchievementsSection = () => {
         <Alert variant="danger">{error}</Alert>
       ) : (
         <Row>
-          {achievements.map((achievement, index) => (
-            <div key={index} className="d-flex align-items-start mb-4">
-              <FontAwesomeIcon
-                icon={faTrophy}
-                size="2x"
-                className="text-primary me-4 mt-1"
-              />
-              <div>
-                <h4 className="fw-bold">{achievement.title}</h4>
-                <p className="text-muted">{achievement.description}</p>
+          {achievements.map((achievement) => (
+            <Col key={achievement._id} md={12} className="mb-4">
+              <div className="d-flex align-items-start">
+                <FontAwesomeIcon
+                  icon={faTrophy}
+                  size="2x"
+                  className="text-primary me-4 mt-1"
+                />
+                <div>
+                  <h4 className="fw-bold">{he.decode(achievement.title)}</h4>
+                  <p className="text-muted">{he.decode(achievement.description)}</p>
+                </div>
               </div>
-            </div>
+            </Col>
           ))}
         </Row>
       )}

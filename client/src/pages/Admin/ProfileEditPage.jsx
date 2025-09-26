@@ -69,18 +69,18 @@ const ProfileEditPage = () => {
               <Form.Group controlId="profilePhoto" className="mb-3"><Form.Label>Profile Photo</Form.Label><Form.Control type="file" onChange={uploadPhotoHandler} accept="image/*" />{uploadingPhoto && <Spinner animation="border" size="sm" className="mt-2" />}</Form.Group>
               {formData.profilePhoto && (<div className="mb-3"><p>Current Photo:</p><Image src={formData.profilePhoto} thumbnail width="150" /><Button variant="outline-danger" size="sm" className="ms-3" onClick={handlePhotoRemove}>Remove Photo</Button></div>)}
 
-              {/* --- REVERTED RESUME SECTION --- */}
+              {/* --- RESUME LINK SECTION --- */}
               <Form.Group className="mb-3" controlId="resumeUrl">
-                <Form.Label>Resume Filename</Form.Label>
-                <Form.Control 
-                  type="text" 
-                  name="resumeUrl" 
-                  value={formData.resumeUrl} 
-                  onChange={handleChange} 
-                  placeholder="e.g., /Amaan-Ahmed-Shaikh-Resume.pdf"
+                <Form.Label>Resume Link (URL)</Form.Label>
+                <Form.Control
+                  type="url"
+                  name="resumeUrl"
+                  value={formData.resumeUrl}
+                  onChange={handleChange}
+                  placeholder="e.g., https://docs.google.com/document/d/..."
                 />
                 <Form.Text className="text-muted">
-                  The file must be in the `client/public` folder.
+                  Paste the full URL to your resume (e.g., a Google Drive or Dropbox link).
                 </Form.Text>
               </Form.Group>
               
