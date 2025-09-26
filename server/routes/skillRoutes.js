@@ -27,7 +27,7 @@ router.route("/reorder").put(protect, reorderSkills);
 
 router
   .route("/:id")
-  .get(protect, getSkillById)
+  .get(getSkillById)
   .put(protect, skillValidationRules, updateSkill)
   .delete(protect, deleteSkill);
 

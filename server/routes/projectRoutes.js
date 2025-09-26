@@ -45,7 +45,7 @@ router.route("/reorder").put(protect, reorderProjects);
 
 router
   .route("/:id")
-  .get(protect, getProjectById)
+  .get(getProjectById)
   .put(protect, projectValidationRules, updateProject)
   .delete(protect, deleteProject);
 

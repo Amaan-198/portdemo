@@ -29,26 +29,33 @@ const ProjectListPage = () => {
 
   const deleteHandler = async (id) => {
     if (window.confirm('Are you sure you want to delete this project?')) {
+      const originalProjects = [...projects];
+      setProjects(projects.filter((p) => p._id !== id));
       try {
         await deleteProject(id);
-        fetchProjects();
       } catch (err) {
-        setError('Could not delete project.');
+        setError('Could not delete project. Please try again.');
+        setProjects(originalProjects);
       }
     }
   };
 
   const handleDragEnd = async (result) => {
     if (!result.destination) return;
+
+    const originalProjects = [...projects];
     const items = Array.from(projects);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
+
     setProjects(items);
+
     const newOrder = items.map(item => item._id);
     try {
       await reorderProjects(newOrder);
     } catch (err) {
-      setError("Failed to reorder projects.");
+      setError("Failed to reorder projects. Reverting local changes.");
+      setProjects(originalProjects); // Revert on failure
     }
   };
 

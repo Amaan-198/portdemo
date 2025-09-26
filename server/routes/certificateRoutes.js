@@ -27,7 +27,7 @@ router.route("/reorder").put(protect, reorderCertificates);
 
 router
   .route("/:id")
-  .get(protect, getCertificateById)
+  .get(getCertificateById)
   .put(protect, certificateValidationRules, updateCertificate)
   .delete(protect, deleteCertificate);
 

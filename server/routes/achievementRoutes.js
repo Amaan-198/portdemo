@@ -26,7 +26,7 @@ router.route("/reorder").put(protect, reorderAchievements);
 
 router
   .route("/:id")
-  .get(protect, getAchievementById)
+  .get(getAchievementById)
   .put(protect, achievementValidationRules, updateAchievement)
   .delete(protect, deleteAchievement);
 
