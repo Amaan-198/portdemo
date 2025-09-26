@@ -1,0 +1,66 @@
+/* Main Education Card Container */
+.education-card {
+  background: rgba(22, 22, 22, 0.75);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 3rem;
+  color: white;
+}
+
+/* Individual Education Entry */
+.education-entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.education-entry:not(:last-child) {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+/* Left side with icon and main info */
+.education-main-info {
+  display: flex;
+  align-items: flex-start;
+}
+
+.education-icon {
+  color: #007bff; /* Vibrant blue accent */
+  margin-right: 1.5rem;
+  margin-top: 8px;
+}
+
+.education-degree {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.education-institution {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Right side with details */
+.education-details {
+  text-align: right;
+  flex-shrink: 0; /* Prevents shrinking */
+}
+
+.education-dates {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0.25rem;
+}
+
+.education-cgpa {
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+}

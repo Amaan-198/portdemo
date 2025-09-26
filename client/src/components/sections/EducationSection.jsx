@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Alert } from 'react-bootstrap';
+import { Alert } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 import { getEducation } from '../../api/apiService';
 import he from 'he';
+import { motion } from 'framer-motion';
+import './EducationSection.css';
 
 const EducationSection = () => {
   const [education, setEducation] = useState([]);
@@ -11,7 +13,6 @@ const EducationSection = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    // This is the logic that was missing
     const fetchEducation = async () => {
       try {
         const { data } = await getEducation();
@@ -23,29 +24,64 @@ const EducationSection = () => {
       }
     };
     fetchEducation();
-  }, []); // The empty array ensures this runs only once when the component mounts
+  }, []);
+
+  const mainCardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: 'easeOut',
+        when: 'beforeChildren',
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const entryVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.4 },
+    },
+  };
 
   return (
-    <Container id="education" className="my-5 py-5">
-      <h2 className="display-5 fw-bold mb-5">Education</h2>
-      {loading ? <p>Loading education...</p> : error ? <Alert variant="danger">{error}</Alert> : (
-        <Row>
+    <section id="education" className="my-5 py-5">
+      <h2 className="display-5 fw-bold mb-5 text-center">Education</h2>
+      {loading ? (
+        <p className="text-center">Loading education...</p>
+      ) : error ? (
+        <Alert variant="danger">{error}</Alert>
+      ) : (
+        <motion.div
+          className="education-card"
+          variants={mainCardVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
           {education.map((edu) => (
-            <Col md={10} lg={9} key={edu._id} className="mb-4">
-              <div className="d-flex align-items-start">
-                <FontAwesomeIcon icon={faGraduationCap} size="3x" className="text-primary me-4 mt-1" />
+            <motion.div className="education-entry" key={edu._id} variants={entryVariants}>
+              <div className="education-main-info">
+                <FontAwesomeIcon icon={faGraduationCap} size="3x" className="education-icon" />
                 <div>
-                  <h4 className="fw-bold">{he.decode(edu.degree)}</h4>
-                  <h5>{he.decode(edu.institution)}</h5>
-                  <p className="text-muted mb-1">{he.decode(edu.dates)}</p>
-                  <p className="text-muted"><strong>CGPA:</strong> {edu.cgpa}</p>
+                  <h4 className="education-degree">{he.decode(edu.degree)}</h4>
+                  <p className="education-institution">{he.decode(edu.institution)}</p>
                 </div>
               </div>
-            </Col>
+              <div className="education-details">
+                <p className="education-dates">{he.decode(edu.dates)}</p>
+                <p className="education-cgpa"><strong>CGPA:</strong> {edu.cgpa}</p>
+              </div>
+            </motion.div>
           ))}
-        </Row>
+        </motion.div>
       )}
-    </Container>
+    </section>
   );
 };
 
