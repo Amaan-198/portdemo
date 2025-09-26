@@ -9,13 +9,13 @@ import {
     faProjectDiagram,
     faCertificate,
     faLaptopCode,
-    faTrophy // <-- NEW: Import the trophy icon
+    faTrophy
 } from '@fortawesome/free-solid-svg-icons';
 
 const AdminSidebar = () => {
     return (
-        <Nav className="flex-column bg-light vh-100 p-3 shadow-sm">
-            <h4 className="mb-4">Admin Menu</h4>
+        <Nav className="flex-column vh-100 p-3">
+            <h4 className="mb-4 admin-sidebar-title">Admin Menu</h4>
             <LinkContainer to="/admin/dashboard">
                 <Nav.Link>
                     <FontAwesomeIcon icon={faTachometerAlt} className="me-2" />
@@ -34,14 +34,12 @@ const AdminSidebar = () => {
                     Manage Experience
                 </Nav.Link>
             </LinkContainer>
-            {/* <-- NEW: Add the Achievements link --> */}
             <LinkContainer to="/admin/achievements">
                 <Nav.Link>
                     <FontAwesomeIcon icon={faTrophy} className="me-2" />
                     Manage Achievements
                 </Nav.Link>
             </LinkContainer>
-            {/* <-- Existing links --> */}
             <LinkContainer to="/admin/certificates">
                 <Nav.Link>
                     <FontAwesomeIcon icon={faCertificate} className="me-2" />

@@ -32,3 +32,7 @@
   font-weight: bold;
   color: #0d6efd; /* Keep primary blue for active state */
 }
+
+.admin-sidebar-title {
+  color: #fff; /* Ensure the title is white */
+}
