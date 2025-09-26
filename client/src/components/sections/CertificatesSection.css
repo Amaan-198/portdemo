@@ -1,0 +1,57 @@
+/* Individual Certificate Card */
+.certificate-card {
+  background: rgba(30, 30, 30, 0.75); /* Dark, semi-transparent background */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-align: center;
+}
+
+/* Icon Styling */
+.certificate-icon {
+  color: #007bff; /* Matching accent color */
+  margin-bottom: 1.5rem;
+  align-self: center;
+}
+
+/* Text Styling */
+.certificate-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #ffffff;
+  flex-grow: 1; /* Pushes button to the bottom */
+  margin-bottom: 0.5rem;
+}
+
+.certificate-issuer {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 1.5rem;
+}
+
+/* Action Button */
+.credential-button {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 0.6rem 1.2rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  align-self: center;
+}
+
+.credential-button:hover {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
