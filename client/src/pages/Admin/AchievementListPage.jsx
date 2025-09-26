@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Table, Alert, Button, Row, Col } from 'react-bootstrap';
+import { Container, Table, Alert, Button, Row, Col, ButtonGroup } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { getAchievements, deleteAchievement, reorderAchievements } from '../../api/apiService';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
@@ -97,18 +97,20 @@ const AchievementListPage = () => {
                           <td>{he.decode(achievement.title)}</td>
                           <td>{he.decode(achievement.description)}</td>
                           <td>
-                            <LinkContainer to={`/admin/achievements/${achievement._id}/edit`}>
-                              <Button variant="light" className="btn-sm mx-1">
-                                Edit
+                            <ButtonGroup>
+                              <LinkContainer to={`/admin/achievements/${achievement._id}/edit`}>
+                                <Button variant="light" className="btn-sm">
+                                  Edit
+                                </Button>
+                              </LinkContainer>
+                              <Button
+                                variant="danger"
+                                className="btn-sm"
+                                onClick={() => deleteHandler(achievement._id)}
+                              >
+                                Delete
                               </Button>
-                            </LinkContainer>
-                            <Button
-                              variant="danger"
-                              className="btn-sm mx-1"
-                              onClick={() => deleteHandler(achievement._id)}
-                            >
-                              Delete
-                            </Button>
+                            </ButtonGroup>
                           </td>
                         </tr>
                       )}

@@ -21,15 +21,15 @@ thead th {
 /* The .form-control overrides have been removed to avoid conflicts with Bootstrap's native dark theme. */
 
 /* --- Buttons --- */
-/* Override the 'light' variant button used for 'Edit' */
-.btn-light {
-  background-color: #4a4a4a; /* Dark gray background */
-  border-color: #6c757d;   /* Bootstrap's secondary color for border */
-  color: #fff;
+/* Override the 'light' variant button used for 'Edit' with a more specific selector */
+[data-bs-theme="dark"] .btn-light {
+  background-color: #4a4a4a !important; /* Dark gray background */
+  border-color: #6c757d !important;   /* Bootstrap's secondary color for border */
+  color: #fff !important;
 }
 
-.btn-light:hover {
-  background-color: #5a5a5a; /* Slightly lighter gray on hover */
-  border-color: #8c959d;
-  color: #fff;
+[data-bs-theme="dark"] .btn-light:hover {
+  background-color: #5a5a5a !important; /* Slightly lighter gray on hover */
+  border-color: #8c959d !important;
+  color: #fff !important;
 }

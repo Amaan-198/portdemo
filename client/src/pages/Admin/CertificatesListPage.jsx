@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Table, Alert, Button, Row, Col } from 'react-bootstrap';
+import { Container, Table, Alert, Button, Row, Col, ButtonGroup } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { getCertificates, deleteCertificate } from '../../api/apiService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -73,18 +73,20 @@ const CertificatesListPage = () => {
                 <td>{he.decode(cert.title)}</td>
                 <td>{he.decode(cert.issuer)}</td>
                 <td>
-                  <LinkContainer to={`/admin/certificates/${cert._id}/edit`}>
-                    <Button variant="light" className="btn-sm mx-1">
-                      Edit
+                  <ButtonGroup>
+                    <LinkContainer to={`/admin/certificates/${cert._id}/edit`}>
+                      <Button variant="light" className="btn-sm">
+                        Edit
+                      </Button>
+                    </LinkContainer>
+                    <Button
+                      variant="danger"
+                      className="btn-sm"
+                      onClick={() => deleteHandler(cert._id)}
+                    >
+                      Delete
                     </Button>
-                  </LinkContainer>
-                  <Button
-                    variant="danger"
-                    className="btn-sm mx-1"
-                    onClick={() => deleteHandler(cert._id)}
-                  >
-                    Delete
-                  </Button>
+                  </ButtonGroup>
                 </td>
               </tr>
             ))}

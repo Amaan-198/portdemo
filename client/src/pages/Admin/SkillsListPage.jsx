@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Table, Alert, Button, Row, Col } from 'react-bootstrap';
+import { Container, Table, Alert, Button, Row, Col, ButtonGroup } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { getSkills, deleteSkill } from '../../api/apiService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -73,18 +73,20 @@ const SkillsListPage = () => {
                 <td>{he.decode(skill.title)}</td>
                 <td>{skill.skills.map(s => he.decode(s)).join(', ')}</td>
                 <td>
-                  <LinkContainer to={`/admin/skills/${skill._id}/edit`}>
-                    <Button variant="light" className="btn-sm mx-1">
-                      Edit
+                  <ButtonGroup>
+                    <LinkContainer to={`/admin/skills/${skill._id}/edit`}>
+                      <Button variant="light" className="btn-sm">
+                        Edit
+                      </Button>
+                    </LinkContainer>
+                    <Button
+                      variant="danger"
+                      className="btn-sm"
+                      onClick={() => deleteHandler(skill._id)}
+                    >
+                      Delete
                     </Button>
-                  </LinkContainer>
-                  <Button
-                    variant="danger"
-                    className="btn-sm mx-1"
-                    onClick={() => deleteHandler(skill._id)}
-                  >
-                    Delete
-                  </Button>
+                  </ButtonGroup>
                 </td>
               </tr>
             ))}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Table, Alert, Button, Row, Col } from 'react-bootstrap';
+import { Container, Table, Alert, Button, Row, Col, ButtonGroup } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { getEducation, deleteEducation } from '../../api/apiService';
 import he from 'he';
@@ -63,12 +63,14 @@ const EducationListPage = () => {
                 <td>{he.decode(edu.degree)}</td>
                 <td>{he.decode(edu.institution)}</td>
                 <td>
-                  <LinkContainer to={`/admin/education/${edu._id}/edit`}>
-                    <Button variant="light" className="btn-sm mx-1">Edit</Button>
-                  </LinkContainer>
-                  <Button variant="danger" className="btn-sm mx-1" onClick={() => deleteHandler(edu._id)}>
-                    Delete
-                  </Button>
+                  <ButtonGroup>
+                    <LinkContainer to={`/admin/education/${edu._id}/edit`}>
+                      <Button variant="light" className="btn-sm">Edit</Button>
+                    </LinkContainer>
+                    <Button variant="danger" className="btn-sm" onClick={() => deleteHandler(edu._id)}>
+                      Delete
+                    </Button>
+                  </ButtonGroup>
                 </td>
               </tr>
             ))}
