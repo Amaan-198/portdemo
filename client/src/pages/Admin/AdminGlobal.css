@@ -1,0 +1,61 @@
+/* === Admin Panel Global Dark Theme Overrides === */
+
+/* --- Tables --- */
+.table {
+  color: #dee2e6; /* Light gray text for tables */
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  --bs-table-accent-bg: rgba(255, 255, 255, 0.05); /* Darker stripe color */
+  color: #dee2e6;
+}
+
+.table-hover > tbody > tr:hover {
+  --bs-table-accent-bg: rgba(255, 255, 255, 0.075);
+  color: #fff;
+}
+
+.table-bordered {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.table > :not(caption) > * > * {
+    background-color: transparent;
+}
+
+thead th {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* --- Forms --- */
+.form-control {
+  background-color: #2a2a2a;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.form-control:focus {
+  background-color: #2a2a2a;
+  color: #fff;
+  border-color: #0d6efd; /* Bootstrap primary blue on focus */
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* --- Buttons --- */
+/* Override the 'light' variant button used for 'Edit' */
+.btn-light {
+  background-color: #333;
+  border-color: #555;
+  color: #fff;
+}
+
+.btn-light:hover {
+  background-color: #444;
+  border-color: #666;
+  color: #fff;
+}

@@ -3,6 +3,7 @@ import { Row, Col } from 'react-bootstrap';
 import { Outlet } from 'react-router-dom'; // 1. Import Outlet
 import AdminSidebar from './AdminSidebar';
 import './AdminLayout.css';
+import '../../pages/Admin/AdminGlobal.css'; // Import global admin styles
 
 const AdminLayout = () => {
   return (
