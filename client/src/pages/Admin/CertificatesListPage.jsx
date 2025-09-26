@@ -28,11 +28,13 @@ const CertificatesListPage = () => {
 
   const deleteHandler = async (id) => {
     if (window.confirm('Are you sure you want to delete this certificate?')) {
+      const originalCertificates = [...certificates];
+      setCertificates(certificates.filter((cert) => cert._id !== id));
       try {
         await deleteCertificate(id);
-        fetchCertificates();
       } catch (err) {
-        setError('Could not delete certificate.');
+        setError('Could not delete certificate. Please try again.');
+        setCertificates(originalCertificates);
       }
     }
   };

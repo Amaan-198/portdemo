@@ -26,7 +26,7 @@ router
 
 router
   .route("/:id")
-  .get(protect, getExperienceById)
+  .get(getExperienceById)
   .put(protect, experienceValidationRules, updateExperience)
   .delete(protect, deleteExperience);
 

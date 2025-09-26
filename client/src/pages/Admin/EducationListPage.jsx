@@ -26,11 +26,13 @@ const EducationListPage = () => {
 
   const deleteHandler = async (id) => {
     if (window.confirm('Are you sure you want to delete this entry?')) {
+      const originalEducationList = [...educationList];
+      setEducationList(educationList.filter((edu) => edu._id !== id));
       try {
         await deleteEducation(id);
-        fetchEducation();
       } catch (err) {
-        setError('Could not delete education entry.');
+        setError('Could not delete education entry. Please try again.');
+        setEducationList(originalEducationList);
       }
     }
   };

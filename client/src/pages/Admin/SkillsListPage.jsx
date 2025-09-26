@@ -28,11 +28,13 @@ const SkillsListPage = () => {
 
   const deleteHandler = async (id) => {
     if (window.confirm('Are you sure you want to delete this skill category?')) {
+      const originalSkills = [...skills];
+      setSkills(skills.filter((skill) => skill._id !== id));
       try {
         await deleteSkill(id);
-        fetchSkills();
       } catch (err) {
-        setError('Could not delete skill category.');
+        setError('Could not delete skill category. Please try again.');
+        setSkills(originalSkills);
       }
     }
   };

@@ -28,7 +28,7 @@ router.route("/reorder").put(protect, reorderEducation);
 
 router
   .route("/:id")
-  .get(protect, getEducationById)
+  .get(getEducationById)
   .put(protect, educationValidationRules, updateEducation)
   .delete(protect, deleteEducation);
 
