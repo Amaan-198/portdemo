@@ -5,11 +5,9 @@
 
 /* Individual Certificate Card */
 .certificate-card {
-  background: rgba(30, 30, 30, 0.75); /* Dark, semi-transparent background */
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  /* The glass effect is now on the parent container. This card is for layout. */
+  background: rgba(30, 30, 30, 0.75); /* Retaining a subtle background for depth */
   border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 2rem;
   color: white;
   display: flex;
