@@ -1,8 +1,9 @@
 import React from 'react';
-import { Container, Card, Button, Row, Col } from 'react-bootstrap';
+import { Container, Button, Row, Col } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faBriefcase, faProjectDiagram, faAward, faCertificate, faCode, faGraduationCap } from '@fortawesome/free-solid-svg-icons';
+import './Dashboard.css';
 
 const Dashboard = () => {
     const managementSections = [
@@ -21,20 +22,18 @@ const Dashboard = () => {
             <Row xs={1} md={2} lg={3} className="g-4">
                 {managementSections.map((section, index) => (
                     <Col key={index}>
-                        <Card className="h-100">
-                            <Card.Body className="d-flex flex-column">
-                                <Card.Title>
-                                    <FontAwesomeIcon icon={section.icon} className="me-2" />
-                                    {section.title}
-                                </Card.Title>
-                                <Card.Text className="flex-grow-1">
-                                    {section.text}
-                                </Card.Text>
-                                <LinkContainer to={section.link}>
-                                    <Button variant="primary" className="mt-auto">Go to {section.title.split(' ')[1]}</Button>
-                                </LinkContainer>
-                            </Card.Body>
-                        </Card>
+                        <div className="dashboard-card">
+                            <h5 className="dashboard-card-title">
+                                <FontAwesomeIcon icon={section.icon} className="dashboard-card-icon" />
+                                {section.title}
+                            </h5>
+                            <p className="dashboard-card-text">
+                                {section.text}
+                            </p>
+                            <LinkContainer to={section.link}>
+                                <Button variant="primary" className="mt-auto">Go to {section.title.split(' ')[1]}</Button>
+                            </LinkContainer>
+                        </div>
                     </Col>
                 ))}
             </Row>
