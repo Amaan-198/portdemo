@@ -58,7 +58,7 @@ const SkillsListPage = () => {
       ) : error ? (
         <Alert variant="danger">{error}</Alert>
       ) : (
-        <Table striped bordered hover responsive>
+        <Table striped bordered hover responsive variant="dark">
           <thead>
             <tr>
               <th>CATEGORY</th>
