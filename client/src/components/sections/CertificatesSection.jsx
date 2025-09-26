@@ -71,7 +71,7 @@ const CertificatesSection = () => {
           >
             {certifications.map((cert) => (
               <motion.div as={Col} key={cert._id} variants={itemVariants}>
-                <div className="certificate-card">
+                <div className="certificate-card h-100">
                   <FontAwesomeIcon
                     icon={faCertificate}
                     size="3x"
