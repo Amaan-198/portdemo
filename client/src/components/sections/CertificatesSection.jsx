@@ -34,7 +34,7 @@ const CertificatesSection = () => {
   };
 
   return (
-    <section id="certificates">
+    <section id="certificates" className="content-section">
       <Container>
         <div className="section-container-glass">
           <h2 className="display-5 fw-bold mb-5 text-center">Certifications & Credentials</h2>

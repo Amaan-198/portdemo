@@ -34,7 +34,7 @@ const AchievementsSection = () => {
   };
 
   return (
-    <section id="achievements">
+    <section id="achievements" className="content-section">
       <Container>
         <div className="section-container-glass">
           <h2 className="display-5 fw-bold mb-5 text-center">Awards & Achievements</h2>
