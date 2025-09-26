@@ -25,6 +25,7 @@
   font-weight: 600;
   color: #ffffff;
   cursor: pointer;
+  text-decoration: none; /* Remove underline */
 }
 
 /* Navigation Links */
