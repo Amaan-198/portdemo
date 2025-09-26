@@ -7,7 +7,7 @@ import '../../pages/Admin/AdminGlobal.css'; // Import global admin styles
 
 const AdminLayout = () => {
   return (
-    <div className="admin-layout-container">
+    <div className="admin-layout-container" data-bs-theme="dark">
       <Row className="g-0">
         <Col md={3} lg={2} className="sidebar-wrapper">
           <AdminSidebar />

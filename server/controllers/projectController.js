@@ -64,15 +64,17 @@ const updateProject = asyncHandler(async (req, res) => {
   } = req.body;
   const project = await Project.findById(req.params.id);
   if (project) {
-    project.title = title || project.title;
-    project.category = category || project.category;
-    project.description = description || project.description;
-    project.extendedDescription =
-      extendedDescription || project.extendedDescription;
-    project.imageUrls = imageUrls || project.imageUrls;
-    project.badge = badge;
-    project.githubUrl = githubUrl;
-    project.liveUrl = liveUrl;
+    project.title = title;
+    project.category = category;
+    project.description = description;
+    project.extendedDescription = extendedDescription;
+    project.imageUrls = imageUrls;
+    // For optional fields, only update if they are provided in the request body.
+    // This allows clearing a field by sending an empty string.
+    if (req.body.badge !== undefined) project.badge = badge;
+    if (req.body.githubUrl !== undefined) project.githubUrl = githubUrl;
+    if (req.body.liveUrl !== undefined) project.liveUrl = liveUrl;
+
     const updatedProject = await project.save();
     res.json(updatedProject);
   } else {
