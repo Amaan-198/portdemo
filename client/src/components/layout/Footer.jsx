@@ -45,7 +45,7 @@ const Footer = () => {
             <FontAwesomeIcon icon={faEnvelope} />
           </a>
           <a
-            href="https://github.com/your-username" // Please update this with the correct GitHub profile URL
+            href="https://github.com/amaanahmed8097"
             target="_blank"
             rel="noopener noreferrer"
             className="footer-social-icon"
