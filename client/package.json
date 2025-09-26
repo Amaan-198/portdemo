@@ -17,6 +17,7 @@
     "@hello-pangea/dnd": "^18.0.1",
     "axios": "^1.12.2",
     "bootstrap": "^5.3.8",
+    "framer-motion": "^12.23.22",
     "he": "^1.2.0",
     "react": "^19.1.1",
     "react-bootstrap": "^2.10.10",

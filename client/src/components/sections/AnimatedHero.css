@@ -1,0 +1,63 @@
+.animated-hero-container {
+  height: 200vh; /* The container needs to be tall to create scroll distance */
+  position: relative;
+}
+
+.sticky-wrapper {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.background-image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.sticky-background {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.content-container {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+}
+
+.text-section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+.about-content {
+  max-width: 800px;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+
+.text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.social-icons a {
+  color: white;
+  transition: color 0.3s;
+}
