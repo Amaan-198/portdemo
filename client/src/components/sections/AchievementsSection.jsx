@@ -1,31 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Alert } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrophy } from '@fortawesome/free-solid-svg-icons';
 import he from 'he';
 import { getAchievements } from '../../api/apiService';
 import { motion } from 'framer-motion';
+import useFetchData from '../../hooks/useFetchData';
 import './AchievementsSection.css';
 
 const AchievementsSection = () => {
-  const [achievements, setAchievements] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-
-  useEffect(() => {
-    const fetchAchievements = async () => {
-      try {
-        setLoading(true);
-        const { data } = await getAchievements();
-        setAchievements(data);
-        setLoading(false);
-      } catch (err) {
-        setError('Could not fetch achievements.');
-        setLoading(false);
-      }
-    };
-    fetchAchievements();
-  }, []);
+  const { data: achievements, loading, error } = useFetchData(getAchievements);
 
   const containerVariants = {
     hidden: { opacity: 0 },

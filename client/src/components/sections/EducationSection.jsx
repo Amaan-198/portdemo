@@ -1,30 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Alert } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 import { getEducation } from '../../api/apiService';
 import he from 'he';
 import { motion } from 'framer-motion';
+import useFetchData from '../../hooks/useFetchData';
 import './EducationSection.css';
 
 const EducationSection = () => {
-  const [education, setEducation] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-
-  useEffect(() => {
-    const fetchEducation = async () => {
-      try {
-        const { data } = await getEducation();
-        setEducation(data);
-        setLoading(false);
-      } catch (err) {
-        setError('Could not fetch education data.');
-        setLoading(false);
-      }
-    };
-    fetchEducation();
-  }, []);
+  const { data: education, loading, error } = useFetchData(getEducation);
 
   const mainCardVariants = {
     hidden: { opacity: 0, y: 20 },

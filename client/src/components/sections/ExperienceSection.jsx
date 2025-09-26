@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Container, Alert } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import he from 'he';
 import { getExperiences } from '../../api/apiService';
+import useFetchData from '../../hooks/useFetchData';
 import './ExperienceSection.css';
 
 const containerVariants = {
@@ -19,24 +20,7 @@ const cardVariants = {
 };
 
 const ExperienceSection = () => {
-  const [experiences, setExperiences] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-
-  useEffect(() => {
-    const fetchExperiences = async () => {
-      try {
-        const { data } = await getExperiences();
-        setExperiences(data);
-        setLoading(false);
-      } catch (err) {
-        setError('Could not fetch professional experience.');
-        setLoading(false);
-      }
-    };
-
-    fetchExperiences();
-  }, []);
+  const { data: experiences, loading, error } = useFetchData(getExperiences);
 
   return (
     <div id="experience" className="experience-section">
