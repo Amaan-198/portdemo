@@ -42,11 +42,13 @@
   font-size: 1.5rem;
   font-weight: 700;
   color: #ffffff;
+  word-wrap: break-word; /* Prevent overflow from long strings */
 }
 
 .education-institution {
   font-size: 1.1rem;
   color: rgba(255, 255, 255, 0.7);
+  word-wrap: break-word; /* Prevent overflow from long strings */
 }
 
 /* Right side with details */

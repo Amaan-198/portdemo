@@ -4,6 +4,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { getSkills, deleteSkill } from '../../api/apiService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import he from 'he';
 
 const SkillsListPage = () => {
   const [skills, setSkills] = useState([]);
@@ -69,8 +70,8 @@ const SkillsListPage = () => {
           <tbody>
             {skills.map((skill) => (
               <tr key={skill._id}>
-                <td>{skill.title}</td>
-                <td>{skill.skills.join(', ')}</td>
+                <td>{he.decode(skill.title)}</td>
+                <td>{skill.skills.map(s => he.decode(s)).join(', ')}</td>
                 <td>
                   <LinkContainer to={`/admin/skills/${skill._id}/edit`}>
                     <Button variant="light" className="btn-sm mx-1">

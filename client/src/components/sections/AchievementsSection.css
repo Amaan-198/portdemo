@@ -35,4 +35,5 @@
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.7); /* Lighter gray for supporting text */
   line-height: 1.6;
+  word-wrap: break-word; /* Prevent overflow from long strings */
 }

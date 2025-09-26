@@ -4,6 +4,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { getCertificates, deleteCertificate } from '../../api/apiService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import he from 'he';
 
 const CertificatesListPage = () => {
   const [certificates, setCertificates] = useState([]);
@@ -69,8 +70,8 @@ const CertificatesListPage = () => {
           <tbody>
             {certificates.map((cert) => (
               <tr key={cert._id}>
-                <td>{cert.title}</td>
-                <td>{cert.issuer}</td>
+                <td>{he.decode(cert.title)}</td>
+                <td>{he.decode(cert.issuer)}</td>
                 <td>
                   <LinkContainer to={`/admin/certificates/${cert._id}/edit`}>
                     <Button variant="light" className="btn-sm mx-1">
