@@ -2,25 +2,13 @@
 
 /* --- Tables --- */
 .table {
-  color: #dee2e6; /* Light gray text for tables */
-}
-
-.table-striped > tbody > tr:nth-of-type(odd) {
-  --bs-table-accent-bg: rgba(255, 255, 255, 0.05); /* Darker stripe color */
-  color: #dee2e6;
-}
-
-.table-hover > tbody > tr:hover {
-  --bs-table-accent-bg: rgba(255, 255, 255, 0.075);
-  color: #fff;
-}
-
-.table-bordered {
-  border-color: rgba(255, 255, 255, 0.15);
-}
-
-.table > :not(caption) > * > * {
-    background-color: transparent;
+  --bs-table-color: #dee2e6;
+  --bs-table-bg: transparent;
+  --bs-table-border-color: rgba(255, 255, 255, 0.15);
+  --bs-table-striped-bg: rgba(255, 255, 255, 0.05);
+  --bs-table-striped-color: #dee2e6;
+  --bs-table-hover-bg: rgba(255, 255, 255, 0.075);
+  --bs-table-hover-color: #fff;
 }
 
 thead th {
