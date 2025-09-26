@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Alert } from 'react-bootstrap';
+import { Alert } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrophy } from '@fortawesome/free-solid-svg-icons';
 import he from 'he';
 import { getAchievements } from '../../api/apiService';
+import { motion } from 'framer-motion';
+import './AchievementsSection.css';
 
 const AchievementsSection = () => {
   const [achievements, setAchievements] = useState([]);
@@ -25,33 +27,63 @@ const AchievementsSection = () => {
     fetchAchievements();
   }, []);
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        ease: 'easeOut',
+      },
+    },
+  };
+
   return (
-    <Container id="achievements" className="my-5 py-5 bg-light">
-      <h2 className="display-5 fw-bold mb-5">Awards & Achievements</h2>
+    <section id="achievements" className="my-5 py-5">
+      <h2 className="display-5 fw-bold mb-5 text-center">Awards & Achievements</h2>
       {loading ? (
-        <p>Loading achievements...</p>
+        <p className="text-center">Loading achievements...</p>
       ) : error ? (
         <Alert variant="danger">{error}</Alert>
       ) : (
-        <Row>
+        <motion.div
+          className="achievements-container"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
           {achievements.map((achievement) => (
-            <Col key={achievement._id} md={12} className="mb-4">
-              <div className="d-flex align-items-start">
-                <FontAwesomeIcon
-                  icon={faTrophy}
-                  size="2x"
-                  className="text-primary me-4 mt-1"
-                />
-                <div>
-                  <h4 className="fw-bold">{he.decode(achievement.title)}</h4>
-                  <p className="text-muted">{he.decode(achievement.description)}</p>
-                </div>
+            <motion.div
+              key={achievement._id}
+              className="achievement-item"
+              variants={itemVariants}
+            >
+              <FontAwesomeIcon
+                icon={faTrophy}
+                size="2x"
+                className="achievement-icon"
+              />
+              <div>
+                <h4 className="achievement-title">{he.decode(achievement.title)}</h4>
+                <p className="achievement-description">{he.decode(achievement.description)}</p>
               </div>
-            </Col>
+            </motion.div>
           ))}
-        </Row>
+        </motion.div>
       )}
-    </Container>
+    </section>
   );
 };
 

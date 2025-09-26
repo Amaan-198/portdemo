@@ -1,0 +1,40 @@
+/* Achievements Section Container */
+.achievements-container {
+  background: rgba(22, 22, 22, 0.75); /* Dark, semi-transparent background */
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 3rem;
+  color: white;
+}
+
+/* Individual Achievement Item */
+.achievement-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 2.5rem; /* Increased spacing between items */
+  opacity: 0; /* Initial state for animation */
+  transform: translateY(20px); /* Initial state for animation */
+}
+
+/* Icon Styling */
+.achievement-icon {
+  color: #007bff; /* Bright, contrasting blue accent color */
+  margin-right: 1.5rem;
+  margin-top: 5px;
+}
+
+/* Text Styling */
+.achievement-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff; /* Bright white for high contrast */
+  margin-bottom: 0.5rem;
+}
+
+.achievement-description {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7); /* Lighter gray for supporting text */
+  line-height: 1.6;
+}
