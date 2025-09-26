@@ -1,0 +1,26 @@
+.project-card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.read-more-link {
+  color: #0d6efd; /* Bootstrap primary blue */
+  cursor: pointer;
+  font-weight: 500;
+  display: inline-block;
+  transition: color 0.2s ease-in-out;
+}
+
+.read-more-link:hover {
+  color: #0a58ca; /* A darker blue for hover */
+  text-decoration: underline;
+}
+
+/* We place the footer at the bottom right */
+.card-footer {
+  text-align: right;
+}

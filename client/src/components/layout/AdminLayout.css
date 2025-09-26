@@ -1,0 +1,15 @@
+.sidebar-wrapper {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.content-wrapper {
+  padding: 2rem;
+}
+
+/* Style the active link in the sidebar */
+.sidebar-wrapper .nav-link.active {
+  font-weight: bold;
+  color: #0d6efd; /* Bootstrap's primary blue color */
+}

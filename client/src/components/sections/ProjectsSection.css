@@ -1,0 +1,6 @@
+.carousel-item img {
+  max-height: 25rem;
+  max-width: 25rem;
+  object-fit: cover; /* This prevents the image from stretching */
+  margin: auto; /* Helps center the image within the item */
+}

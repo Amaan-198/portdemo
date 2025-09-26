@@ -1,0 +1,7 @@
+.skill-badge {
+  background-color: #e9ecef; /* A light grey background */
+  color: rgba(33, 37, 41, 0.75); /* Dark text for contrast */
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.5em 1em;
+}
