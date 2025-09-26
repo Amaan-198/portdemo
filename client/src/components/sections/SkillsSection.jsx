@@ -21,7 +21,7 @@ const SkillsSection = () => {
       transition: {
         duration: 0.5,
         when: "beforeChildren",
-        staggerChildren: 0.1,
+        staggerChildren: 0.05, /* Reduced stagger for faster column animation */
       },
     },
   };
@@ -31,7 +31,7 @@ const SkillsSection = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
+        staggerChildren: 0.07, /* Reduced stagger for faster tag animation */
       },
     },
   };
