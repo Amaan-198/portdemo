@@ -22,7 +22,7 @@ const AnimatedContent = ({ profile }) => {
     const introPointerEvents = useTransform(scrollYProgress, [0.19, 0.2], ['auto', 'none']);
 
     const aboutOpacity = useTransform(scrollYProgress, [0.2, 0.3, 0.8, 0.95], [0, 1, 1, 0]);
-    const aboutPointerEvents = useTransform(scrollYProgress, [0.19, 0.2, 0.95, 0.96], ['none', 'auto', 'auto', 'none']);
+    const aboutPointerEvents = useTransform(scrollYProgress, [0.2, 0.21, 0.95, 0.96], ['none', 'auto', 'auto', 'none']);
 
     return (
         <div ref={targetRef} id="home" className="animated-hero-container">

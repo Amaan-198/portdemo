@@ -18,6 +18,7 @@ const profileSchema = mongoose.Schema(
     },
     aboutNarrative: {
       type: String,
+      required: true,
     },
     aboutSkills: [
       {

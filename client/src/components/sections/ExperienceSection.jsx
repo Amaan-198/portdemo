@@ -1,7 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Alert } from 'react-bootstrap';
+import { Container, Alert } from 'react-bootstrap';
+import { motion } from 'framer-motion';
 import he from 'he';
 import { getExperiences } from '../../api/apiService';
+import './ExperienceSection.css';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.2 },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
 
 const ExperienceSection = () => {
   const [experiences, setExperiences] = useState([]);
@@ -24,36 +39,42 @@ const ExperienceSection = () => {
   }, []);
 
   return (
-    <Container id="experience" className="my-5 py-5 bg-light">
-      <h2 className="display-5 fw-bold mb-5">Professional Experience</h2>
+    <div id="experience" className="experience-section">
+      <Container>
+        <h2 className="display-5 fw-bold text-center text-white mb-5">Professional Experience</h2>
 
-      {loading ? (
-        <p>Loading experience...</p>
-      ) : error ? (
-        <Alert variant="danger">{error}</Alert>
-      ) : (
-        experiences.map((exp) => (
-          <Row key={exp._id} className="mb-4">
-            <Col md={10} lg={9}>
-              <div className="d-flex">
-                <div className="pe-4 text-muted">
-                  <strong>{he.decode(exp.dates)}</strong>
+        {loading ? (
+          <p className="text-center text-white">Loading experience...</p>
+        ) : error ? (
+          <Alert variant="danger">{error}</Alert>
+        ) : (
+          <motion.div
+            className="experience-list"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+          >
+            {experiences.map((exp) => (
+              <motion.div key={exp._id} className="experience-card" variants={cardVariants}>
+                <div className="experience-header">
+                  <div>
+                    <h4 className="experience-role">{he.decode(exp.role)}</h4>
+                    <h5 className="experience-company">{he.decode(exp.company)}</h5>
+                  </div>
+                  <div className="experience-dates">{he.decode(exp.dates)}</div>
                 </div>
-                <div className="border-start ps-4">
-                  <h4>{he.decode(exp.role)}</h4>
-                  <h5 className="text-primary">{he.decode(exp.company)}</h5>
-                  <ul>
-                    {exp.description.map((point, i) => (
-                      <li key={i}>{he.decode(point)}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </Col>
-          </Row>
-        ))
-      )}
-    </Container>
+                <ul className="experience-description">
+                  {exp.description.map((point, i) => (
+                    <li key={i}>{he.decode(point)}</li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
+      </Container>
+    </div>
   );
 };
 
