@@ -1,7 +1,6 @@
 /* General Section Styling */
 .experience-section {
-    background-color: #111; /* Dark background for cohesion */
-    padding: 4rem 0;
+    /* Background and padding are now handled by the global .glass-section class */
     color: #fff;
 }
 

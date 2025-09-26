@@ -34,7 +34,7 @@ const CertificatesSection = () => {
   };
 
   return (
-    <section id="certificates" className="my-5 py-5">
+    <section id="certificates" className="glass-section">
       <h2 className="display-5 fw-bold mb-5 text-center">Certifications & Credentials</h2>
       {loading ? (
         <p className="text-center">Loading certifications...</p>

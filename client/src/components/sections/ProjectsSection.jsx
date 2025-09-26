@@ -31,10 +31,11 @@ const ProjectsSection = () => {
   }, {});
 
   return (
-    <Container id="projects" className="my-5 py-5">
-      <h2 className="display-5 fw-bold mb-5 text-center">My Projects</h2>
-      {loading ? (
-        <p className="text-center">Loading projects...</p>
+    <div id="projects" className="glass-section">
+      <Container>
+        <h2 className="display-5 fw-bold mb-5 text-center">My Projects</h2>
+        {loading ? (
+          <p className="text-center">Loading projects...</p>
       ) : error ? (
         <Alert variant="danger">{error}</Alert>
       ) : (
