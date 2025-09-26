@@ -43,15 +43,21 @@ const AnimatedContent = ({ profile }) => {
                                 {profile?.headline ? he.decode(profile.headline) : 'Your Professional Headline'}
                             </p>
                             <div className="mt-4 social-icons">
-                                <a href="https://www.linkedin.com/in/amaanahmed8097" target="_blank" rel="noopener noreferrer" className="me-4">
-                                    <FontAwesomeIcon icon={faLinkedin} size="3x" />
-                                </a>
-                                <a href="mailto:shaikhamaanahmed@gmail.com" className="me-4">
-                                    <FontAwesomeIcon icon={faEnvelope} size="3x" />
-                                </a>
-                                <a href="https://github.com/amaanahmed8097" target="_blank" rel="noopener noreferrer">
-                                    <FontAwesomeIcon icon={faGithub} size="3x" />
-                                </a>
+                                {profile?.linkedinUrl && (
+                                    <a href={profile.linkedinUrl} target="_blank" rel="noopener noreferrer" className="me-4">
+                                        <FontAwesomeIcon icon={faLinkedin} size="3x" />
+                                    </a>
+                                )}
+                                {profile?.email && (
+                                    <a href={`mailto:${profile.email}`} className="me-4">
+                                        <FontAwesomeIcon icon={faEnvelope} size="3x" />
+                                    </a>
+                                )}
+                                {profile?.githubUrl && (
+                                    <a href={profile.githubUrl} target="_blank" rel="noopener noreferrer">
+                                        <FontAwesomeIcon icon={faGithub} size="3x" />
+                                    </a>
+                                )}
                             </div>
                             <div className="mt-4">
                                 {profile?.resumeUrl && (

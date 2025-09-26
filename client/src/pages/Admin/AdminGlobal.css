@@ -23,13 +23,13 @@ thead th {
 /* --- Buttons --- */
 /* Override the 'light' variant button used for 'Edit' */
 .btn-light {
-  background-color: #333;
-  border-color: #555;
+  background-color: #4a4a4a; /* Dark gray background */
+  border-color: #6c757d;   /* Bootstrap's secondary color for border */
   color: #fff;
 }
 
 .btn-light:hover {
-  background-color: #444;
-  border-color: #666;
+  background-color: #5a5a5a; /* Slightly lighter gray on hover */
+  border-color: #8c959d;
   color: #fff;
 }

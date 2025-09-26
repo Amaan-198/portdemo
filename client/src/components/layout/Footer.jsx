@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { motion } from 'framer-motion';
+import { getProfile } from '../../api/apiService';
 import './Footer.css';
 
 const Footer = () => {
+  const [profile, setProfile] = useState(null);
   const currentYear = new Date().getFullYear();
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const { data } = await getProfile();
+        setProfile(data);
+      } catch (error) {
+        console.error("Could not fetch profile for footer:", error);
+      }
+    };
+    fetchProfile();
+  }, []);
 
   const footerVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -30,28 +44,21 @@ const Footer = () => {
     >
       <div className="footer-container">
         <div className="footer-social-links">
-          <a
-            href="https://www.linkedin.com/in/amaanahmed8097"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="footer-social-icon"
-          >
-            <FontAwesomeIcon icon={faLinkedin} />
-          </a>
-          <a
-            href="mailto:shaikhamaanahmed@gmail.com"
-            className="footer-social-icon"
-          >
-            <FontAwesomeIcon icon={faEnvelope} />
-          </a>
-          <a
-            href="https://github.com/amaanahmed8097"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="footer-social-icon"
-          >
-            <FontAwesomeIcon icon={faGithub} />
-          </a>
+          {profile?.linkedinUrl && (
+            <a href={profile.linkedinUrl} target="_blank" rel="noopener noreferrer" className="footer-social-icon">
+              <FontAwesomeIcon icon={faLinkedin} />
+            </a>
+          )}
+          {profile?.email && (
+            <a href={`mailto:${profile.email}`} className="footer-social-icon">
+              <FontAwesomeIcon icon={faEnvelope} />
+            </a>
+          )}
+          {profile?.githubUrl && (
+            <a href={profile.githubUrl} target="_blank" rel="noopener noreferrer" className="footer-social-icon">
+              <FontAwesomeIcon icon={faGithub} />
+            </a>
+          )}
         </div>
         <p className="footer-copyright">
           &copy; {currentYear} Amaan Ahmed Shaikh. All Rights Reserved.
