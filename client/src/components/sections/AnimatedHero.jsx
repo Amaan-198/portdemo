@@ -8,11 +8,7 @@ import he from 'he';
 import { getProfile } from '../../api/apiService';
 import './AnimatedHero.css';
 
-const AnimatedHero = () => {
-    const [profile, setProfile] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState('');
-
+const AnimatedContent = ({ profile }) => {
     const targetRef = useRef(null);
 
     const { scrollYProgress } = useScroll({
@@ -25,23 +21,6 @@ const AnimatedHero = () => {
     const introScale = useTransform(scrollYProgress, [0, 0.3], [1, 0.9]);
     const aboutOpacity = useTransform(scrollYProgress, [0.25, 0.5], [0, 1]);
     const aboutScale = useTransform(scrollYProgress, [0.25, 0.5], [0.95, 1]);
-
-    useEffect(() => {
-        const fetchProfile = async () => {
-            try {
-                const { data } = await getProfile();
-                setProfile(data);
-                setLoading(false);
-            } catch (err) {
-                setError('Could not fetch profile data.');
-                setLoading(false);
-            }
-        };
-        fetchProfile();
-    }, []);
-
-    if (loading) return <div style={{height: '100vh'}}><p className="text-center p-5">Loading...</p></div>;
-    if (error) return <Alert variant="danger">{error}</Alert>;
 
     return (
         <div ref={targetRef} id="home" className="animated-hero-container">
@@ -100,6 +79,31 @@ const AnimatedHero = () => {
             </div>
         </div>
     );
+};
+
+const AnimatedHero = () => {
+    const [profile, setProfile] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
+
+    useEffect(() => {
+        const fetchProfile = async () => {
+            try {
+                const { data } = await getProfile();
+                setProfile(data);
+                setLoading(false);
+            } catch (err) {
+                setError('Could not fetch profile data.');
+                setLoading(false);
+            }
+        };
+        fetchProfile();
+    }, []);
+
+    if (loading) return <div style={{height: '100vh'}}><p className="text-center p-5">Loading...</p></div>;
+    if (error) return <Alert variant="danger">{error}</Alert>;
+
+    return <AnimatedContent profile={profile} />;
 };
 
 export default AnimatedHero;
