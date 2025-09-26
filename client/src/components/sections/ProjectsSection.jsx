@@ -40,7 +40,8 @@ const ProjectsSection = () => {
   };
 
   const groupedProjects = projects.reduce((acc, project) => {
-    (acc[project.category] = acc[project.category] || []).push(project);
+    const category = project.category || 'Uncategorized';
+    (acc[category] = acc[category] || []).push(project);
     return acc;
   }, {});
 

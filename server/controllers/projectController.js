@@ -69,7 +69,7 @@ const updateProject = asyncHandler(async (req, res) => {
     project.description = description || project.description;
     project.extendedDescription =
       extendedDescription || project.extendedDescription;
-    project.imageUrls = imageUrls || project.imageUrls; // Uses the correct 'imageUrls' field
+    project.imageUrls = imageUrls || project.imageUrls;
     project.badge = badge;
     project.githubUrl = githubUrl;
     project.liveUrl = liveUrl;
