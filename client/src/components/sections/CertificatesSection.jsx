@@ -1,31 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Alert, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCertificate, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import he from 'he';
 import { getCertificates } from '../../api/apiService';
 import { motion } from 'framer-motion';
+import useFetchData from '../../hooks/useFetchData';
 import './CertificatesSection.css';
 
 const CertificatesSection = () => {
-  const [certifications, setCertifications] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-
-  useEffect(() => {
-    const fetchCertificates = async () => {
-      try {
-        setLoading(true);
-        const { data } = await getCertificates();
-        setCertifications(data);
-        setLoading(false);
-      } catch (err) {
-        setError('Could not fetch certifications.');
-        setLoading(false);
-      }
-    };
-    fetchCertificates();
-  }, []);
+  const { data: certifications, loading, error } = useFetchData(getCertificates);
 
   const containerVariants = {
     hidden: { opacity: 0 },

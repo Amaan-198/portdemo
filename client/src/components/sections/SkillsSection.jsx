@@ -1,29 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Row, Col, Alert } from 'react-bootstrap';
 import he from 'he';
 import { getSkills } from '../../api/apiService';
 import { motion } from 'framer-motion';
+import useFetchData from '../../hooks/useFetchData';
 import './SkillsSection.css';
 
 const SkillsSection = () => {
-  const [skillCategories, setSkillCategories] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-
-  useEffect(() => {
-    const fetchSkills = async () => {
-      try {
-        setLoading(true);
-        const { data } = await getSkills();
-        setSkillCategories(data);
-        setLoading(false);
-      } catch (err) {
-        setError('Could not fetch skills.');
-        setLoading(false);
-      }
-    };
-    fetchSkills();
-  }, []);
+  const { data: skillCategories, loading, error } = useFetchData(getSkills);
 
   const midpoint = Math.ceil(skillCategories.length / 2);
   const firstColumn = skillCategories.slice(0, midpoint);

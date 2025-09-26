@@ -1,33 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col, Alert, Carousel } from 'react-bootstrap';
 import ProjectCard from '../ProjectCard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { faGithub, faExternalLinkAlt } from '@fortawesome/free-brands-svg-icons';
 import { getProjects } from '../../api/apiService';
 import he from 'he';
-import './ProjectsSection.css'; // Import the new CSS file
+import useFetchData from '../../hooks/useFetchData';
+import './ProjectsSection.css';
 
 const ProjectsSection = () => {
+  const { data: projects, loading, error } = useFetchData(getProjects);
   const [showModal, setShowModal] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const { data } = await getProjects();
-        setProjects(data);
-        setLoading(false);
-      } catch (err) {
-        setError('Could not fetch projects from the server.');
-        setLoading(false);
-      }
-    };
-    fetchProjects();
-  }, []);
 
   const handleShowModal = (project) => {
     setSelectedProject(project);
@@ -47,8 +31,12 @@ const ProjectsSection = () => {
 
   return (
     <Container id="projects" className="my-5 py-5">
-      <h2 className="display-5 fw-bold mb-5">My Projects</h2>
-      {loading ? <p>Loading projects...</p> : error ? <Alert variant="danger">{error}</Alert> : (
+      <h2 className="display-5 fw-bold mb-5 text-center">My Projects</h2>
+      {loading ? (
+        <p className="text-center">Loading projects...</p>
+      ) : error ? (
+        <Alert variant="danger">{error}</Alert>
+      ) : (
         Object.entries(groupedProjects).map(([category, projectsInCategory]) => (
           <div key={category} className="mb-5">
             <h3 className="mb-4">{he.decode(category)}</h3>
