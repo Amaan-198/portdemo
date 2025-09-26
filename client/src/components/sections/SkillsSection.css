@@ -1,7 +1,39 @@
-.skill-badge {
-  background-color: #e9ecef; /* A light grey background */
-  color: rgba(33, 37, 41, 0.75); /* Dark text for contrast */
+/* Main Skills Container */
+.skills-container {
+  background: rgba(22, 22, 22, 0.75);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 3rem;
+}
+
+/* Category Title */
+.skill-category-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #007bff; /* Muted blue accent color */
+  margin-bottom: 1rem;
+}
+
+/* Skill Tags Container */
+.skill-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* Individual Skill Tag */
+.skill-tag {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 20px; /* Rounded pill shape */
   font-size: 0.9rem;
   font-weight: 500;
-  padding: 0.5em 1em;
+  transition: background-color 0.3s;
+}
+
+.skill-tag:hover {
+  background: rgba(255, 255, 255, 0.2);
 }

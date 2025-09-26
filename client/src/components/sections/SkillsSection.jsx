@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Badge, Alert } from 'react-bootstrap';
+import { Row, Col, Alert } from 'react-bootstrap';
 import he from 'he';
 import { getSkills } from '../../api/apiService';
+import { motion } from 'framer-motion';
 import './SkillsSection.css';
 
 const SkillsSection = () => {
@@ -24,40 +25,75 @@ const SkillsSection = () => {
     fetchSkills();
   }, []);
 
-  // Logic to split the categories into two columns for a clean layout
   const midpoint = Math.ceil(skillCategories.length / 2);
   const firstColumn = skillCategories.slice(0, midpoint);
   const secondColumn = skillCategories.slice(midpoint);
 
+  const mainContainerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        when: "beforeChildren",
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const categoryContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const tagVariants = {
+    hidden: { opacity: 0, x: -10 },
+    visible: { opacity: 1, x: 0 },
+  };
+
   const renderSkillColumn = (column) => (
     column.map((category) => (
-      <div key={category._id} className="mb-4">
-        <h4 className="fw-bold">{he.decode(category.title)}</h4>
-        <div className="d-flex flex-wrap">
+      <motion.div key={category._id} className="mb-4" variants={categoryContainerVariants}>
+        <h4 className="skill-category-title">{he.decode(category.title)}</h4>
+        <motion.div className="skill-tags-container" variants={categoryContainerVariants}>
           {category.skills.map((skill) => (
-            <Badge key={skill} pill className="skill-badge me-2 mb-2">
+            <motion.span key={skill} className="skill-tag" variants={tagVariants}>
               {he.decode(skill)}
-            </Badge>
+            </motion.span>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     ))
   );
 
   return (
-    <Container id="skills" className="my-5 py-5 bg-light">
-      <h2 className="display-5 fw-bold mb-5">Technical Skills</h2>
+    <section id="skills" className="my-5 py-5">
+      <h2 className="display-5 fw-bold mb-5 text-center">Technical Skills</h2>
       {loading ? (
-        <p>Loading skills...</p>
+        <p className="text-center">Loading skills...</p>
       ) : error ? (
         <Alert variant="danger">{error}</Alert>
       ) : (
-        <Row>
-          <Col md={6}>{renderSkillColumn(firstColumn)}</Col>
-          <Col md={6}>{renderSkillColumn(secondColumn)}</Col>
-        </Row>
+        <motion.div
+          className="skills-container"
+          variants={mainContainerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
+          <Row>
+            <Col md={6}>{renderSkillColumn(firstColumn)}</Col>
+            <Col md={6}>{renderSkillColumn(secondColumn)}</Col>
+          </Row>
+        </motion.div>
       )}
-    </Container>
+    </section>
   );
 };
 
