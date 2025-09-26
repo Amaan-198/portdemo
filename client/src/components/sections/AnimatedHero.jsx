@@ -19,10 +19,8 @@ const AnimatedContent = ({ profile }) => {
     const backgroundY = useTransform(scrollYProgress, [0.3, 1], ['0%', '-50%']);
     const introOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
     const introScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.9]);
-    const introPointerEvents = useTransform(scrollYProgress, [0.19, 0.2], ['auto', 'none']);
 
     const aboutOpacity = useTransform(scrollYProgress, [0.2, 0.3, 0.8, 0.95], [0, 1, 1, 0]);
-    const aboutPointerEvents = useTransform(scrollYProgress, [0.2, 0.21, 0.95, 0.96], ['none', 'auto', 'auto', 'none']);
 
     return (
         <div ref={targetRef} id="home" className="animated-hero-container">
@@ -35,7 +33,7 @@ const AnimatedContent = ({ profile }) => {
                 </motion.div>
                 
                 <div className="content-container">
-                    <motion.div className="text-section" style={{ opacity: introOpacity, scale: introScale, pointerEvents: introPointerEvents }}>
+                    <motion.div className="text-section" style={{ opacity: introOpacity, scale: introScale }}>
                         <Container>
                             <h1 className="display-1 fw-bold text-shadow">
                                 {profile?.name ? he.decode(profile.name) : 'Your Name'}
@@ -68,7 +66,7 @@ const AnimatedContent = ({ profile }) => {
                         </Container>
                     </motion.div>
                 
-                    <motion.div id="about" className="text-section" style={{ opacity: aboutOpacity, pointerEvents: aboutPointerEvents }}>
+                    <motion.div id="about" className="text-section" style={{ opacity: aboutOpacity }}>
                         <motion.div
                             className="bento-grid-container"
                             variants={{
