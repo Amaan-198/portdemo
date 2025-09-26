@@ -43,11 +43,11 @@ function App() {
               <Route element={<AdminLayout />}>
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="projects" element={<ProjectListPage />} />
-                <Route path="project/create" element={<ProjectCreatePage />} />
-                <Route path="project/:id/edit" element={<ProjectEditPage />} />
+                <Route path="projects/create" element={<ProjectCreatePage />} />
+                <Route path="projects/:id/edit" element={<ProjectEditPage />} />
                 <Route path="experiences" element={<ExperienceListPage />} />
-                <Route path="experience/create" element={<ExperienceCreatePage />} />
-                <Route path="experience/:id/edit" element={<ExperienceEditPage />} />
+                <Route path="experiences/create" element={<ExperienceCreatePage />} />
+                <Route path="experiences/:id/edit" element={<ExperienceEditPage />} />
                 <Route path="achievements" element={<AchievementListPage />} />
                 <Route path="achievements/create" element={<AchievementCreatePage />} />
                 <Route path="achievements/:id/edit" element={<AchievementEditPage />} />
