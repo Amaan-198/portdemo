@@ -21,6 +21,7 @@ const AnimatedContent = ({ profile }) => {
     const introScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.9]);
 
     const aboutOpacity = useTransform(scrollYProgress, [0.2, 0.3, 0.8, 0.95], [0, 1, 1, 0]);
+    const aboutPointerEvents = useTransform(scrollYProgress, [0.2, 0.3], ['none', 'auto']);
 
     return (
         <div ref={targetRef} id="home" className="animated-hero-container">
@@ -68,7 +69,7 @@ const AnimatedContent = ({ profile }) => {
                         </Container>
                     </motion.div>
                 
-                    <motion.div id="about" className="text-section" style={{ opacity: aboutOpacity }}>
+                    <motion.div id="about" className="text-section" style={{ opacity: aboutOpacity, pointerEvents: aboutPointerEvents }}>
                         <motion.div
                             className="bento-grid-container"
                             variants={{
