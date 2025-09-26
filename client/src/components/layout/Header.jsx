@@ -1,9 +1,9 @@
-import React from 'react';
-import { Navbar, Nav, Container } from 'react-bootstrap';
-import { Link } from 'react-scroll'; // Import the Link component from react-scroll
+import React, { useState, useRef } from 'react';
+import { Link as ScrollLink } from 'react-scroll';
+import { motion } from 'framer-motion';
+import './Header.css';
 
 const Header = () => {
-  // This data will eventually come from your CMS
   const navLinks = [
     { title: 'About', id: 'about' },
     { title: 'Experience', id: 'experience' },
@@ -12,33 +12,65 @@ const Header = () => {
     { title: 'Skills', id: 'skills' },
   ];
 
+  // State to hold the position and width of the active indicator
+  const [indicator, setIndicator] = useState({ left: 0, width: 0, opacity: 0 });
+  const navRef = useRef(null);
+
+  const handleSetActive = (to) => {
+    // Find the link element that corresponds to the active section
+    const linkElements = Array.from(navRef.current.children);
+    const targetLink = linkElements.find(
+      (child) => child.getAttribute('data-to') === to
+    );
+
+    if (targetLink) {
+      const { offsetLeft, offsetWidth } = targetLink;
+      setIndicator({ left: offsetLeft, width: offsetWidth, opacity: 1 });
+    }
+  };
+
+  const handleSetInactive = () => {
+    // Optionally hide the indicator when not hovering over a link
+    // For now, we'll keep it visible on the active link
+  };
+
   return (
-    <Navbar bg="light" variant="light" expand="lg" sticky="top" className="shadow-sm">
-      <Container>
-        <Navbar.Brand as={Link} to="home" spy={true} smooth={true} duration={500} style={{cursor: 'pointer'}}>
+    <header className="main-header">
+      <div className="header-container">
+        <ScrollLink
+          to="home" // Assuming you have a home section with this id
+          spy={true}
+          smooth={true}
+          duration={500}
+          className="header-brand"
+        >
           Amaan Ahmed Shaikh
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="main-navbar-nav" />
-        <Navbar.Collapse id="main-navbar-nav">
-          <Nav className="ms-auto">
-            {navLinks.map((link) => (
-              <Nav.Link as={Link}
-                key={link.id}
-                to={link.id} // This 'to' prop matches the 'id' of our section containers
-                spy={true}
-                smooth={true}
-                offset={-70} // Adjusts scroll position to account for the navbar height
-                duration={500}
-                className="mx-2"
-                style={{cursor: 'pointer'}}
-              >
-                {link.title}
-              </Nav.Link>
-            ))}
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+        </ScrollLink>
+        <nav className="header-nav" ref={navRef}>
+          {navLinks.map((link) => (
+            <ScrollLink
+              key={link.id}
+              to={link.id}
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={500}
+              className="header-nav-link"
+              onSetActive={handleSetActive}
+              onSetInactive={handleSetInactive}
+              data-to={link.id} // Custom attribute to help find the element
+            >
+              {link.title}
+            </ScrollLink>
+          ))}
+          <motion.div
+            className="active-link-indicator"
+            animate={indicator}
+            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+          />
+        </nav>
+      </div>
+    </header>
   );
 };
 
