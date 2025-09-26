@@ -10,7 +10,7 @@ const profileValidationRules = [
   body("headline").notEmpty().trim().escape(),
   body("about").notEmpty().trim().escape(),
   body("profilePhoto").optional({ checkFalsy: true }).isURL(),
-  body("resumeUrl").optional({ checkFalsy: true }).escape(),
+  body("resumeUrl").optional({ checkFalsy: true }).isString().trim(),
 ];
 
 router

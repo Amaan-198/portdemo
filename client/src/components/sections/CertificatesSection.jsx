@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Button, Alert } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCertificate } from '@fortawesome/free-solid-svg-icons';
+import he from 'he';
 import { getCertificates } from '../../api/apiService';
 
 const CertificatesSection = () => {
@@ -33,27 +34,31 @@ const CertificatesSection = () => {
         <Alert variant="danger">{error}</Alert>
       ) : (
         <Row>
-          {certifications.map((cert, index) => (
-            <div key={index} className="d-flex align-items-start mb-4">
-              <FontAwesomeIcon
-                icon={faCertificate}
-                size="2x"
-                className="text-primary me-4 mt-1"
-              />
-              <div>
-                <h4 className="fw-bold">{cert.title}</h4>
-                <p className="text-muted mb-2">Issued by: {cert.issuer}</p>
-                <Button
-                  variant="outline-primary"
-                  size="sm"
-                  href={cert.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  View Credential
-                </Button>
+          {certifications.map((cert) => (
+            <Col key={cert._id} md={12} className="mb-4">
+              <div className="d-flex align-items-start">
+                <FontAwesomeIcon
+                  icon={faCertificate}
+                  size="2x"
+                  className="text-primary me-4 mt-1"
+                />
+                <div>
+                  <h4 className="fw-bold">{he.decode(cert.title)}</h4>
+                  <p className="text-muted mb-2">Issued by: {he.decode(cert.issuer)}</p>
+                  {cert.url && (
+                    <Button
+                      variant="outline-primary"
+                      size="sm"
+                      href={cert.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      View Credential
+                    </Button>
+                  )}
+                </div>
               </div>
-            </div>
+            </Col>
           ))}
         </Row>
       )}

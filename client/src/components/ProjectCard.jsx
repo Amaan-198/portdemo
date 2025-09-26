@@ -15,9 +15,9 @@ const ProjectCard = ({ title, description, imageUrls, badge, onReadMore }) => {
         <Card.Text className="flex-grow-1">{he.decode(description)}</Card.Text>
       </Card.Body>
       <Card.Footer className="border-0 bg-white">
-        <div onClick={onReadMore} className="read-more-link">
+        <button onClick={onReadMore} className="btn-link-style read-more-link">
           Read More <FontAwesomeIcon icon={faArrowUpRightFromSquare} size="sm" />
-        </div>
+        </button>
       </Card.Footer>
     </Card>
   );

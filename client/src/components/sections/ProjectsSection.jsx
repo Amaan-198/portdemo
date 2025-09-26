@@ -69,9 +69,9 @@ const ProjectsSection = () => {
           </Modal.Header>
           <Modal.Body>
             <Carousel>
-              {selectedProject.imageUrls.map((url, index) => (
-                <Carousel.Item key={index}>
-                  <img src={url} alt={`${he.decode(selectedProject.title)} - view ${index + 1}`} className="d-block w-100" />
+              {selectedProject.imageUrls.map((url) => (
+                <Carousel.Item key={url}>
+                  <img src={url} alt={`${he.decode(selectedProject.title)} - view`} className="d-block w-100" />
                 </Carousel.Item>
               ))}
             </Carousel>

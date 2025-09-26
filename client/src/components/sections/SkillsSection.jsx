@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Badge, Alert } from 'react-bootstrap';
+import he from 'he';
 import { getSkills } from '../../api/apiService';
 import './SkillsSection.css';
 
@@ -29,13 +30,13 @@ const SkillsSection = () => {
   const secondColumn = skillCategories.slice(midpoint);
 
   const renderSkillColumn = (column) => (
-    column.map((category, index) => (
-      <div key={index} className="mb-4">
-        <h4 className="fw-bold">{category.title}</h4>
+    column.map((category) => (
+      <div key={category._id} className="mb-4">
+        <h4 className="fw-bold">{he.decode(category.title)}</h4>
         <div className="d-flex flex-wrap">
-          {category.skills.map((skill, i) => (
-            <Badge key={i} pill className="skill-badge me-2 mb-2">
-              {skill}
+          {category.skills.map((skill) => (
+            <Badge key={skill} pill className="skill-badge me-2 mb-2">
+              {he.decode(skill)}
             </Badge>
           ))}
         </div>

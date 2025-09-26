@@ -45,7 +45,9 @@ const HeroSection = () => {
                                 size="lg"
                                 className="m-2"
                                 href={profile?.resumeUrl}
-                                download
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                disabled={!profile?.resumeUrl}
                             >
                                 Download Resume
                             </Button>
