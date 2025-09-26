@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Form, Button, Alert, Row, Col, Spinner, Image } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getProjectById, updateProject, uploadImages } from '../../api/apiService';
+import he from 'he';
 
 const ProjectEditPage = () => {
   const { id: projectId } = useParams();
@@ -25,7 +26,16 @@ const ProjectEditPage = () => {
     const fetchProject = async () => {
       try {
         const { data } = await getProjectById(projectId);
-        setFormData(data);
+        // Decode HTML entities before setting the form data
+        const decodedData = {
+          ...data,
+          title: data.title ? he.decode(data.title) : '',
+          category: data.category ? he.decode(data.category) : '',
+          description: data.description ? he.decode(data.description) : '',
+          extendedDescription: data.extendedDescription ? he.decode(data.extendedDescription) : '',
+          badge: data.badge ? he.decode(data.badge) : '',
+        };
+        setFormData(decodedData);
         setLoading(false);
       } catch (err) {
         setError('Failed to fetch project data.');
