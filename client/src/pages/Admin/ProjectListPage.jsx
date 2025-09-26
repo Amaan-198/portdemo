@@ -57,7 +57,7 @@ const ProjectListPage = () => {
       <Row className="align-items-center my-5">
         <Col><h1>Manage Projects</h1></Col>
         <Col className="text-end">
-          <LinkContainer to="/admin/project/create">
+          <LinkContainer to="/admin/projects/create">
             <Button variant="primary">
               <FontAwesomeIcon icon={faPlus} className="me-2" /> Create Project
             </Button>
@@ -86,7 +86,7 @@ const ProjectListPage = () => {
                           <td>{project.title}</td>
                           <td>{project.category}</td>
                           <td>
-                            <LinkContainer to={`/admin/project/${project._id}/edit`}>
+                            <LinkContainer to={`/admin/projects/${project._id}/edit`}>
                               <Button variant="light" className="btn-sm mx-1">Edit</Button>
                             </LinkContainer>
                             <Button variant="danger" className="btn-sm mx-1" onClick={() => deleteHandler(project._id)}>Delete</Button>
