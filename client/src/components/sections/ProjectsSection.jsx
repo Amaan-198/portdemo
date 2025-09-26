@@ -31,7 +31,7 @@ const ProjectsSection = () => {
   }, {});
 
   return (
-    <section id="projects">
+    <section id="projects" className="content-section">
       <Container>
         <div className="section-container-glass">
           <h2 className="display-5 fw-bold mb-5 text-center">My Projects</h2>
