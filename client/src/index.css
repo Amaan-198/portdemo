@@ -6,11 +6,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* --- DYNAMIC BACKGROUND --- */
-  background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e);
+  /* --- NEW "SMOKY" DYNAMIC BACKGROUND --- */
+  background: linear-gradient(-45deg, #111111, #232323, #1a1a1a, #383838);
   background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
-  color: rgba(255, 255, 255, 0.85); /* Default text color for the dark theme */
+  animation: gradient 20s ease infinite;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 @keyframes gradient {
@@ -20,12 +20,12 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #fff; /* White headings to stand out on the dark background */
+  color: #fff;
 }
 
 /* --- REUSABLE GLASS CONTAINER STYLE --- */
 .section-container-glass {
-  background: rgba(25, 25, 30, 0.6); /* Slightly darker glass effect */
+  background: rgba(25, 25, 30, 0.6);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
